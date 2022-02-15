@@ -1,12 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import Menu from "./components/Menu";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <div>
+    <Menu />
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </div>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

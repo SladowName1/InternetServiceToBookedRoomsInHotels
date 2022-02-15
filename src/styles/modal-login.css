@@ -1,0 +1,43 @@
+.modal_login {
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+    font-size: 18px;
+}
+
+.modal_login_active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal_login_content {
+    border-radius: 12px;
+    background: white;
+    transform: scale(0.5);
+    transition: 0.4s all;
+    min-width: 20%;
+    max-width: 30rem;
+    min-height: 100px;
+  }
+  
+  .modal_login_content_active {
+    transform: scale(1);
+    background: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);
+  }
+
+  .login_tab {
+    display: none;
+  }
+
+  .active_login_tab {
+    display: block;
+  }
