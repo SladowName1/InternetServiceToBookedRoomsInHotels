@@ -1,0 +1,16 @@
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    height: 35px;
+    font-size: 20px;
+    background-color: orange;
+}
+
+.nav-menu-items {
+    display: flex;
+}
+
+.nav-menu-item {
+    margin-left: 5px;
+    cursor: pointer;
+}
