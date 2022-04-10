@@ -9,10 +9,11 @@
     width: 50%;
     background-color: orange;
     height: 80px;
-    margin: 30px auto 0px auto;
+    margin: auto;
     text-align: center;
     font-size: 24px;
     color: #ee5050;
+    border-radius: 10px;
 }
 .booking_search_container_element{
     display: flex;
