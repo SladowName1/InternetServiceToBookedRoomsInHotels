@@ -1,7 +1,7 @@
 .booking_search_container_all {
     display: flex;
     background-image: url("../img/background_search.jpg");
-    height: 300px;
+    height: 200px;
     margin:0px;
 }
 

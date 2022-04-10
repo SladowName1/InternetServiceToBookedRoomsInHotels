@@ -6,9 +6,6 @@ const Home = () => {
 
     return (
         <div className='home_container'>
-            <div className='booking_search_container_all'>
-                <BookingSearch/>
-            </div>
             <HotelsOnHomePage/>
         </div>
     )
