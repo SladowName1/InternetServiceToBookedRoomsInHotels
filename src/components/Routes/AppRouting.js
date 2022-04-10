@@ -1,13 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Main from "../Main";
+import Home from "../Home";
 
 const AppRouting = () =>{
     return (
         <Routes>
-            <Route path='' element={<Main/>}/>
+            <Route path='' element={<Home/>}/>
         </Routes>
     )
 }
-
 export default AppRouting;

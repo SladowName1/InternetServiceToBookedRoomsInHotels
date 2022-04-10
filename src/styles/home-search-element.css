@@ -1,0 +1,69 @@
+.booking_search_container_all {
+    display: flex;
+    background-image: url("../img/background_search.jpg");
+    height: 300px;
+    margin:0px;
+}
+
+.booking_search_container {
+    width: 50%;
+    background-color: orange;
+    height: 80px;
+    margin: 30px auto 0px auto;
+    text-align: center;
+    font-size: 24px;
+    color: #ee5050;
+}
+.booking_search_container_element{
+    display: flex;
+    background-color: orange;
+    margin: 10px 20px 0 20px;
+}
+
+.booking_search_input{
+    width:100%;
+    height: 100%;
+    display: flex;
+    align-items: center
+}
+
+.booking_search_input input{
+    display: block;
+    border-radius: 5px;
+    border:1px solid black;
+}
+
+.booking_search_input button{
+    display: block;
+    margin:auto;
+}
+
+.input_element_where{
+    width: 100%;
+    margin: 0 10px 0 10px;
+    height: 25px;
+}
+
+.input_element_at {
+    margin: 0 0 0 10px;
+    height: 25px;
+}
+
+.input_element_to {
+    margin: 0 10px 0 0;
+    height: 25px;
+}
+
+.input_element_who{
+    width: 100%;
+    margin: 0 10px 0 10px;
+    height: 25px;
+}
+
+.button_search_hotels{
+    width: 100%;
+    height: 27px;
+    margin: 0 10px 0 10px;
+    border-radius: 5px;
+    border:1px solid black;
+}
