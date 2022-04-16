@@ -1,37 +1,42 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import "../../styles/login.css";
+import EndPoint from '../const/EndPoint';
 
-const Login = () => {
+const Login = ({ active, setActive }) => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const submitLogin = () => {
-    const headres = {
-      'Access-Control-Allow-Origin' : '*'
-    };
-    const data = {
-      username: login,
-      password: password
-    };
+  const submitLogin = async () => {
+      try{
+          console.log('qwfq')
+          console.log(EndPoint);
+          console.log('qwfq')
+          const res = await axios.post(`${EndPoint}api/user/token?username=${login}&password=${password}`);
+          localStorage.setItem('token', res.data.access_token);
+          setActive(false);
+          setError('');
+          setLogin('');
+          setPassword('');
+      } catch (err) {
+       if(err.response) {
+           console.log('here')
+           setError(err.response.data.message);
+       }
+      }
+  }
 
-    axios.post(`https://localhost:44307/api/user/token?username=${login}&password=${password}`, {headres: headres})
-    .then(res => {
-      localStorage.setItem('token', res.data.access_token);
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-      axios.get('https://localhost:44307/api/user/login')
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      })
-    })
-    .catch(err => {console.log(err)});
+  const cancel = () => {
+      setActive(false);
+      setError('');
+      setLogin('');
+      setPassword('');
   }
 
   return (
     <div className="login-container">
+        {error ? <div>{error}</div> : null}
       <div className="login-input-container login-email-container">
         <input className="login-input" placeholder="Email" value={login} onChange={(e) => {setLogin(e.target.value)}}/>
       </div>
@@ -40,7 +45,7 @@ const Login = () => {
       </div>
       <div className="login-button-container">
           <button onClick={submitLogin}>Login</button>
-          <button>Cancel</button>
+          <button onClick={() => cancel()}>Cancel</button>
       </div>
     </div>
   );

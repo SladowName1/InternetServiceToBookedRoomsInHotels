@@ -19,7 +19,6 @@ const ModalLogin = ({ active, setActive }) => {
   return (
     <div
       className={active ? "modal_login modal_login_active" : "modal_login"}
-      onClick={() => setActive(false)}
     >
       <div
         className={
@@ -44,14 +43,14 @@ const ModalLogin = ({ active, setActive }) => {
           </div>
         </div>
         <div className={isLogin ? "active_login_tab login_tab" : "login_tab"}>
-          <Login />
+          <Login active={active} setActive={setActive}/>
         </div>
         <div
           className={
             isRegistration ? "active_login_tab login_tab" : "login_tab"
           }
         >
-          <Registration />
+          <Registration active={active} setActive={setActive}/>
         </div>
       </div>
     </div>
