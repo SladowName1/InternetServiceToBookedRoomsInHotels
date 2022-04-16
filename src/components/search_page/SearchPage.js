@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import FiltersElement from "./FiltersElement";
 import ListElement from "./ListElement";
-import BookingSearch from "../home_page/BookingSearch";
 
 const SearchPage = () => {
+    const [test, setTest] = useState(false);
+
     return(
         <div className='search_page_container'>
-            <FiltersElement/>
-            <ListElement/>
+            <FiltersElement test={test} setTest={setTest}/>
+            <ListElement  test={test} setTest={setTest}/>
         </div>
     )
 }

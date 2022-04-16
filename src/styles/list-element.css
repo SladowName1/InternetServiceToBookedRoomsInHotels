@@ -1,0 +1,58 @@
+.index_list_element_container{
+    margin-left: 40px;
+    width: 100%;
+}
+
+.sorted_container {
+    width: 100%;
+    background-color: orange;
+    height: 70px;
+}
+
+.sorted_container_title {
+    font-size: 20px;
+    font-weight: bold;
+    padding:5px;
+}
+
+.sorted_container_by {
+    display: flex;
+    margin-top: 5px;
+    font-size: 18px;
+    width: 50%;
+    white-space: nowrap;
+}
+
+.sorted_container_by_title {
+    padding: 4px;
+}
+
+.sorted_container_element{
+    display: flex;
+    margin-left: 10px;
+    height: 100%;
+    border: 1px solid black;
+    padding: 4px;
+    border-radius: 3px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.list_element {
+    display: flex;
+    margin-top: 15px;
+}
+
+.list_element_all_information {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.list_element_information {
+    margin-left: 10px;
+}
+
+.list_element_booking {
+    margin-left: 20px;
+}

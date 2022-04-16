@@ -5,9 +5,16 @@ import "../styles/home-search-element.css"
 
 const Menu = () => {
   const [active, setActive] = useState(false);
+
+    const toHomePage = () => {
+      window.location = window.location.origin;
+  }
+
   return (
     <div className="nav-menu">
-      <div>Hotel App</div>
+      <div style={{cursor:'pointer'}} onClick={() => toHomePage()}>
+          Hotel App
+      </div>
       <div className="nav-menu-items">
         <div className="nav-menu-item">Test</div>
         <div className="nav-menu-item">Test</div>

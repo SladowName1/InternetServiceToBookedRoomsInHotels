@@ -5,7 +5,9 @@ import Menu from "./components/Menu";
 import './styles/index.css';
 import './styles/home-image.css';
 import './styles/footer.css';
-import './styles/search-page.css'
+import './styles/search-page.css';
+import './styles/filter-component.css';
+import './styles/list-element.css';
 import AboutService from "./components/AboutService";
 import BookingSearch from "./components/home_page/BookingSearch";
 
