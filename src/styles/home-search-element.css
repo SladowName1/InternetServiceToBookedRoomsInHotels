@@ -67,4 +67,15 @@
     margin: 0 10px 0 10px;
     border-radius: 5px;
     border:1px solid black;
+    cursor: pointer;
+}
+
+.button_search_hotels:hover{
+    background-color: orange;
+}
+
+.select_city_search {
+width: 200px;
+    height: 30px;
+    border-radius: 5px;
 }
