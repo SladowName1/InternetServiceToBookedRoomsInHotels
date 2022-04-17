@@ -6,7 +6,10 @@ import Select from 'react-select'
 
 const BookingSearch = () => {
     const [cities, setCities] = useState(null);
-    const [startDate, setStartDate] = useState('');
+    const [startDate, setStartDate] = useState(true);
+    const [endDate, setEndDate] = useState(true);
+    const [countOfPeople, setCountOfPeople] = useState(true);
+    const [city, setCity] = useState(true);
 
     useEffect(async () => {
         const date = new Date();
@@ -16,16 +19,27 @@ const BookingSearch = () => {
         if (!cities) {
             const resCities = await axios.get(`${EndPoint}api/hotel/cities`);
             setCities(resCities.data.cities);
-        } else {
-            console.log(startDate);
-            cities.map(city => {
-                console.log(city);
-            })
         }
     });
 
     const pad2 = (number) => {
         return (number < 10 ? '0' : '') +number;
+    }
+
+    const searchClick = () => {
+        const count = document.getElementById('count_of_people').validity.valid;
+        const city = document.getElementById('city_input').validity.valid;
+        const start = document.getElementById('start_date_input').validity.valid;
+        const end = document.getElementById('end_date_input').validity.valid;
+        setStartDate(start);
+        setEndDate(end);
+        setCountOfPeople(count);
+        setCity(city);
+        if (count && city && start && end) {
+            console.log('here');
+        } else {
+            console.log('fuck')
+        }
     }
 
     return(
@@ -37,7 +51,7 @@ const BookingSearch = () => {
                     <div className='booking_search_input'>
                             {cities?.length ?
                                 <div>
-                                <input className='input_element_at' placeholder='например Минск' type="text" name="city" list="cityname"/>
+                                <input id='city_input' className={city ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='например Минск' type="text" name="city" list="cityname" required/>
                                     <datalist id="cityname" className='input_element_at'>
                                         {cities.map((id, city) =>
                                             <option key={city} value={id}/>)}
@@ -48,16 +62,16 @@ const BookingSearch = () => {
                                 </select>}
                     </div>
                     <div className='booking_search_input'>
-                        <input id='start_date_input' type='date' className='input_element_at' placeholder='Вьезд'/>
+                        <input id='start_date_input' type='date' className={startDate ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='Вьезд' required/>
                     </div>
                     <div className='booking_search_input'>
-                        <input id='end_date_input' type='date' className='input_element_to' placeholder='Выезд'/>
+                        <input id='end_date_input' type='date' className={endDate ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='Выезд' required/>
                     </div>
                     <div className='booking_search_input'>
-                        <input type='number' className='input_element_who' placeholder='Сколько людей'/>
+                        <input id='count_of_people' type='number' className={countOfPeople ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='Сколько людей' required/>
                     </div>
                     <div className='booking_search_input'>
-                        <button className='button_search_hotels'>Найти</button>
+                        <button className='button_search_hotels' onClick={() => searchClick()}>Найти</button>
                     </div>
                 </div>
             </div>

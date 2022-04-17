@@ -79,3 +79,9 @@ width: 200px;
     height: 30px;
     border-radius: 5px;
 }
+
+.required_input_element {
+    outline: none;
+    border-color: red;
+    box-shadow: 0 0 20px red;
+}
