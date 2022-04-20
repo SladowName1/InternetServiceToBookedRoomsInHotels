@@ -22,7 +22,6 @@ const Menu = () => {
       setIsUser(false);
   }
 
-
   return (
     <div className="nav-menu">
       <div style={{cursor:'pointer'}} onClick={() => toHomePage()}>
