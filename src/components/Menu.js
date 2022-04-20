@@ -22,16 +22,20 @@ const Menu = () => {
       setIsUser(false);
   }
 
+
   return (
     <div className="nav-menu">
       <div style={{cursor:'pointer'}} onClick={() => toHomePage()}>
           Hotel App
       </div>
       <div className="nav-menu-items">
-        <div className="nav-menu-item">Test</div>
-        <div className="nav-menu-item">Test</div>
-        <div className="nav-menu-item">Test</div>
-          {isUser? <div className="nav-menu-item" onClick={() => logout()}>Выйти</div> : <div className="nav-menu-item" onClick={() => setActive(true)}>Войти</div>}
+          {isUser?
+              <div className="nav-menu-items">
+                  <div className="nav-menu-item"><a href='/profile'>Профиль</a>
+                  </div>
+                  <div className="nav-menu-item" onClick={() => logout()}>Выйти
+                  </div>
+              </div> : <div className="nav-menu-item" onClick={() => setActive(true)}>Войти</div>}
       </div>
       <ModalLogin active={active} setActive={setActive} />
     </div>

@@ -1,15 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import BackGroundImageForSearchContainer from '../../img/background_search.jpg'
 import axios from "axios";
 import EndPoint from "../const/EndPoint";
-import Select from 'react-select'
+import {Router} from "react-router";
+import {Link} from "react-router-dom";
 
-const BookingSearch = () => {
+function BookingSearch () {
     const [cities, setCities] = useState(null);
     const [startDate, setStartDate] = useState(true);
     const [endDate, setEndDate] = useState(true);
     const [countOfPeople, setCountOfPeople] = useState(true);
     const [city, setCity] = useState(true);
+    const [StartDate, SetStartDate] = useState(null);
+    const [EndDate, SetEndDate] = useState(null);
+    const [Cities, SetCities] = useState(null);
+    const [CountOfPeople, SetCountOfPeople] = useState(null);
+    const [hotels, setHotels] = useState([]);
+
 
     useEffect(async () => {
         const date = new Date();
@@ -26,7 +32,7 @@ const BookingSearch = () => {
         return (number < 10 ? '0' : '') +number;
     }
 
-    const searchClick = () => {
+    const searchClick = async () => {
         const count = document.getElementById('count_of_people').validity.valid;
         const city = document.getElementById('city_input').validity.valid;
         const start = document.getElementById('start_date_input').validity.valid;
@@ -36,46 +42,58 @@ const BookingSearch = () => {
         setCountOfPeople(count);
         setCity(city);
         if (count && city && start && end) {
-            console.log('here');
+            const ids = await axios.get(`${EndPoint}api/hotel/getReservation?StartBooking=${StartDate}&EndBooking=${EndDate}`);
+            let stringIds = '';
+            for (let i = 0; i < ids.data.ids.length; i++) {
+                stringIds += `id[${i}]=${ids.data.ids[i]}&`;
+            }
+            const roomsIds = await axios.get(`${EndPoint}api/hotel/getRooms?CountOfPeople=${CountOfPeople}&${stringIds}`);
+            let set = new Set(roomsIds.data.ids);
+            Set.prototype.getByIndex = function(index) { return [...this][index]; }
+            stringIds = '';
+            for (let i = 0; i < set.size; i++) {
+                stringIds += `ids[${i}]=${set.getByIndex(i)}&`;
+            }
+            const hotels = await axios.get(`${EndPoint}api/hotel/searchHotels?City=${Cities}&${stringIds}`);
+            setHotels(hotels.data.hotels);
         } else {
-            console.log('fuck')
+            alert('Пожалуйста заполните все поля')
         }
     }
-
-    return(
+        return(
             <div className='booking_search_container'>
                 <div>
                     Куда вы хотите поехать?
                 </div>
                 <div className='booking_search_container_element'>
                     <div className='booking_search_input'>
-                            {cities?.length ?
-                                <div>
-                                <input id='city_input' className={city ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='например Минск' type="text" name="city" list="cityname" required/>
-                                    <datalist id="cityname" className='input_element_at'>
-                                        {cities.map((id, city) =>
-                                            <option key={city} value={id}/>)}
-                                    </datalist>
-                                </div>
+                        {cities?.length ?
+                            <div>
+                                <input id='city_input' className={city ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='например Минск' type="text" name="city" list="cityname" value={Cities} onChange={(e) => SetCities(e.target.value)} required/>
+                                <datalist id="cityname" className='input_element_at'>
+                                    {cities.map((id, city) =>
+                                        <option key={city} value={id}/>)}
+                                </datalist>
+                            </div>
                             : <select>
-                                    <option>Минск</option>
-                                </select>}
+                                <option>Минск</option>
+                            </select>}
                     </div>
                     <div className='booking_search_input'>
-                        <input id='start_date_input' type='date' className={startDate ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='Вьезд' required/>
+                        <input id='start_date_input' type='date' value={StartDate} onChange={(e) => SetStartDate(e.target.value)} className={startDate ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='Вьезд' required/>
                     </div>
                     <div className='booking_search_input'>
-                        <input id='end_date_input' type='date' className={endDate ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='Выезд' required/>
+                        <input id='end_date_input' type='date' value={EndDate} onChange={(e) => SetEndDate(e.target.value)} className={endDate ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='Выезд' required/>
                     </div>
                     <div className='booking_search_input'>
-                        <input id='count_of_people' type='number' className={countOfPeople ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='Сколько людей' required/>
+                        <input id='count_of_people' type='number' value={CountOfPeople} onChange={(e) => SetCountOfPeople(e.target.value)} className={countOfPeople ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='Сколько людей' required/>
                     </div>
                     <div className='booking_search_input'>
-                        <button className='button_search_hotels' onClick={() => searchClick()}>Найти</button>
+                        <button className='button_search_hotels' onClick={async () => await searchClick()}>Найти</button>
                     </div>
                 </div>
             </div>
-    )
-}
+        )
+    }
 
 export default BookingSearch;
