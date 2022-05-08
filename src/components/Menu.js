@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import ModalLogin from "./modal/ModalLogin";
 import "../styles/menu.css";
 import "../styles/home-search-element.css"
+import {setGlobalHotels} from "./allData";
 
 const Menu = () => {
   const [active, setActive] = useState(false);
@@ -14,6 +15,7 @@ const Menu = () => {
   })
 
   const toHomePage = () => {
+      setGlobalHotels([]);
       window.location = window.location.origin;
   }
 

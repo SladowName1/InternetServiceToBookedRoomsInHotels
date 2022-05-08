@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import EndPoint from "../const/EndPoint";
-import {Router} from "react-router";
-import {Link} from "react-router-dom";
+import {setGlobalHotels} from "../allData";
+import {observer} from "mobx-react-lite";
+import {Context} from "../../index";
 
-function BookingSearch () {
+const BookingSearch = observer(() => {
     const [cities, setCities] = useState(null);
     const [startDate, setStartDate] = useState(true);
     const [endDate, setEndDate] = useState(true);
@@ -16,6 +17,7 @@ function BookingSearch () {
     const [CountOfPeople, SetCountOfPeople] = useState(null);
     const [hotels, setHotels] = useState([]);
 
+    const{indexHotel} = useContext(Context);
 
     useEffect(async () => {
         const date = new Date();
@@ -55,7 +57,7 @@ function BookingSearch () {
                 stringIds += `ids[${i}]=${set.getByIndex(i)}&`;
             }
             const hotels = await axios.get(`${EndPoint}api/hotel/searchHotels?City=${Cities}&${stringIds}`);
-            setHotels(hotels.data.hotels);
+            indexHotel.setSearchHotel(hotels.data.hotels);
         } else {
             alert('Пожалуйста заполните все поля')
         }
@@ -94,6 +96,6 @@ function BookingSearch () {
                 </div>
             </div>
         )
-    }
+    });
 
 export default BookingSearch;

@@ -1,13 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import EndPoint from "../const/EndPoint";
 import {Image} from 'cloudinary-react';
+import {Navigate} from "react-router";
+import {Context} from "../../index";
+import {observer} from 'mobx-react-lite'
 
-const HotelsOnHomePage = () => {
+const HotelsOnHomePage = observer(() => {
     const [offset, setOffset] = useState(0);
-    const [hotels, setHotels] = useState(null);
     const [hotelsLenght, setHotelsLenght] = useState(0);
     const [allHotels, setAllHotels] = useState(null)
+
+    const{indexHotel} = useContext(Context);
 
     useEffect( () => {
         const interval = setInterval(async () => {
@@ -15,14 +19,14 @@ const HotelsOnHomePage = () => {
                 const hotelsLength = await axios.get(`${EndPoint}api/hotel/`);
                 setHotelsLenght(hotelsLength.data.hotels.length);
                 setAllHotels(hotelsLength.data.hotels);
-                setHotels(hotelsLength.data.hotels.slice(offset, 5));
+                indexHotel.setHomeHotel(hotelsLength.data.hotels.slice(offset, 5));
                 setOffset(5);
             } else {
                 if (offset + 5 <= hotelsLenght) {
-                    setHotels(allHotels.slice(offset, offset+5));
+                    indexHotel.setHomeHotel(allHotels.slice(offset, offset+5));
                     setOffset(offset + 5);
                 } else {
-                    setHotels(allHotels.slice(0, 5));
+                    indexHotel.setHomeHotel(allHotels.slice(0, 5));
                     setOffset(5);
                 }
             }
@@ -32,12 +36,13 @@ const HotelsOnHomePage = () => {
 
     return (
         <div className='home_image_container'>
+            {indexHotel.searchHotel.length ? <Navigate to='/search'/> : null}
             <div className='home_image_title'>
                 Некоторые отели из нашего сервиса
             </div>
-            {hotels ?
+            {indexHotel.homeHotel.length ?
                 <div className='home_images_container'>
-                    {hotels.map(hotel =>
+                    {indexHotel.homeHotel.map(hotel =>
                         <div key={hotel.id}>
                            <Image
                            cloudName = "dz3dswxup"
@@ -47,40 +52,8 @@ const HotelsOnHomePage = () => {
                             </div>
                         </div>)}
                 </div> : <div>Loading</div>}
-            {/*<div className='home_images_container'>*/}
-            {/*    <div>*/}
-            {/*        <img src={Image} alt="Loading"/>*/}
-            {/*        <div className='hotel_image_title'>*/}
-            {/*            First Hotel*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        <img src={Image} alt="Loading"/>*/}
-            {/*        <div className='hotel_image_title'>*/}
-            {/*            Second Hotel*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        <img src={Image} alt="Loading"/>*/}
-            {/*        <div className='hotel_image_title'>*/}
-            {/*            Third Hotel*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        <img src={Image} alt="Loading"/>*/}
-            {/*        <div className='hotel_image_title'>*/}
-            {/*            Fourth Hotel*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        <img src={Image} alt="Loading"/>*/}
-            {/*        <div className='hotel_image_title'>*/}
-            {/*            Fifth Hotel*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
         </div>
     )
-}
+});
 
 export default HotelsOnHomePage;
