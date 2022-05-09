@@ -13,7 +13,6 @@ const ListElement = observer(() => {
         const hotel = await axios.get(`${EndPoint}api/hotel/${id}`)
         if(hotel) {
             indexHotel.setNeedHotel(hotel.data.hotel);
-
         }
     }
 

@@ -8,15 +8,19 @@ import './styles/footer.css';
 import './styles/search-page.css';
 import './styles/filter-component.css';
 import './styles/list-element.css';
+import './styles/hotel-page.css';
+import './styles/room-table.css';
 import AboutService from "./components/AboutService";
 import BookingSearch from "./components/home_page/BookingSearch";
 import HotelStore from "./components/store/HotelStore";
+import RoomStore from "./components/store/RoomStore";
 
 export const Context = createContext(null);
 
 ReactDOM.render(
     <Context.Provider value ={{
-        indexHotel: new HotelStore()
+        indexHotel: new HotelStore(),
+        rooms: new RoomStore()
     }}>
         <div className='index_container'>
             <Menu />

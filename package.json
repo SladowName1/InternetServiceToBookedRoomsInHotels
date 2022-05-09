@@ -10,6 +10,7 @@
     "cloudinary-core": "^2.12.3",
     "cloudinary-react": "^1.7.2",
     "express": "^4.17.3",
+    "google-map-react": "^2.1.10",
     "mobx": "^6.5.0",
     "mobx-react-lite": "^3.4.0",
     "path": "^0.12.7",
