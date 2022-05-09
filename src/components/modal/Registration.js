@@ -1,12 +1,14 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import axios from "axios";
 import EndPoint from "../const/EndPoint";
+import {Context} from "../../index";
 
 const Registration = ({ active, setActive }) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     const [error, setError] = useState('');
+    const {user} = useContext(Context);
 
     const registration = async () => {
         if (password === repeatPassword) {
@@ -17,6 +19,7 @@ const Registration = ({ active, setActive }) => {
                 }
                 const res = await axios.post(`${EndPoint}api/user/registration`, data);
                 localStorage.setItem('token', res.data.access_token);
+                user.setUser(data);
                 setActive(false);
                 setError('');
                 setLogin('');
@@ -24,7 +27,6 @@ const Registration = ({ active, setActive }) => {
                 setRepeatPassword('');
             } catch (err) {
                 if (err.response) {
-                    console.log('here')
                     setError(err.response.data.message);
                 }
             }

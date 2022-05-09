@@ -1,3 +1,7 @@
+.room_table_container {
+    margin-top: 40px;
+}
 .room_table_item_container {
     display: flex;
+    justify-content: space-around
 }

@@ -1,27 +1,30 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import "../../styles/login.css";
 import EndPoint from '../const/EndPoint';
+import {Context} from "../../index";
 
 const Login = ({ active, setActive }) => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const {user} = useContext(Context);
+
   const submitLogin = async () => {
       try{
-          console.log('qwfq')
-          console.log(EndPoint);
-          console.log('qwfq')
           const res = await axios.post(`${EndPoint}api/user/token?username=${login}&password=${password}`);
           localStorage.setItem('token', res.data.access_token);
+          user.setUser( {
+              Email: login,
+              Password: password
+          })
           setActive(false);
           setError('');
           setLogin('');
           setPassword('');
       } catch (err) {
        if(err.response) {
-           console.log('here')
            setError(err.response.data.message);
        }
       }

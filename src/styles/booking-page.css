@@ -1,0 +1,5 @@
+.booking_page_container {
+    display: flex;
+    width: 80%;
+    margin: 40px auto auto auto;
+}

@@ -5,6 +5,21 @@
     flex-direction: column;
 }
 
+.hotel_title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.hotel_information {
+    text-align: left;
+    font-size: 18px;
+}
+
 .hotel_image {
     display: flex;
+}
+
+.hotel_title_container {
+    display: flex;
+    justify-content: space-between;
 }

@@ -10,17 +10,20 @@ import './styles/filter-component.css';
 import './styles/list-element.css';
 import './styles/hotel-page.css';
 import './styles/room-table.css';
+import './styles/booking-page.css';
 import AboutService from "./components/AboutService";
 import BookingSearch from "./components/home_page/BookingSearch";
 import HotelStore from "./components/store/HotelStore";
 import RoomStore from "./components/store/RoomStore";
+import UserStore from "./components/store/UserStore";
 
 export const Context = createContext(null);
 
 ReactDOM.render(
     <Context.Provider value ={{
         indexHotel: new HotelStore(),
-        rooms: new RoomStore()
+        rooms: new RoomStore(),
+        user: new UserStore()
     }}>
         <div className='index_container'>
             <Menu />
