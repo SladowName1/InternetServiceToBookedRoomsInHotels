@@ -1,0 +1,22 @@
+.profile_page_container{
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: 40px auto auto auto;
+}
+
+.profile_page_container input{
+    margin: 0;
+}
+
+.profile_page_info_element_container {
+    display: flex;
+}
+
+.profile_page_element_title {
+    padding: 8px;
+}
+
+.profile_page_element_value {
+    display: flex;
+}

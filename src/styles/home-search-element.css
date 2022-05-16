@@ -14,6 +14,11 @@
     font-size: 24px;
     color: #ee5050;
     border-radius: 10px;
+    border-radius: 10px;
+}
+
+.booking_search_container_not_view {
+    display: none;
 }
 .booking_search_container_element{
     display: flex;

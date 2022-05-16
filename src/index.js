@@ -11,11 +11,15 @@ import './styles/list-element.css';
 import './styles/hotel-page.css';
 import './styles/room-table.css';
 import './styles/booking-page.css';
+import './styles/profile-page.css';
+import './styles/add-hotel-page.css';
+import './styles/add-room-page.css';
 import AboutService from "./components/AboutService";
 import BookingSearch from "./components/home_page/BookingSearch";
 import HotelStore from "./components/store/HotelStore";
 import RoomStore from "./components/store/RoomStore";
 import UserStore from "./components/store/UserStore";
+import ViewUpContainerStore from './components/store/ViewUpContainerStore';
 
 export const Context = createContext(null);
 
@@ -23,13 +27,12 @@ ReactDOM.render(
     <Context.Provider value ={{
         indexHotel: new HotelStore(),
         rooms: new RoomStore(),
-        user: new UserStore()
+        user: new UserStore(),
+        view: new ViewUpContainerStore()
     }}>
         <div className='index_container'>
             <Menu />
-            <div className='booking_search_container_all'>
-                <BookingSearch/>
-            </div>
+            <BookingSearch/>
             <App />
             <AboutService/>
         </div>
