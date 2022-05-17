@@ -2,14 +2,17 @@ import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import EndPoint from "../const/EndPoint";
 import {Image} from 'cloudinary-react';
-import {Navigate} from "react-router";
+import {Navigate, useNavigate} from "react-router";
 import {Context} from "../../index";
 import {observer} from 'mobx-react-lite'
+import {CircularProgress, Spin} from "react-cssfx-loading";
+import {toast} from "react-hot-toast";
 
 const HotelsOnHomePage = observer(() => {
     const [offset, setOffset] = useState(0);
     const [hotelsLenght, setHotelsLenght] = useState(0);
     const [allHotels, setAllHotels] = useState(null)
+    const navigate = useNavigate();
 
     const{indexHotel} = useContext(Context);
 
@@ -34,6 +37,14 @@ const HotelsOnHomePage = observer(() => {
         return () => clearInterval(interval);
     }, [allHotels, hotelsLenght, offset])
 
+    const goToHotelPage = async (id) => {
+        const hotel = await axios.get(`${EndPoint}api/hotel/${id}`)
+        if (hotel) {
+            indexHotel.setHotelFromHomePage(hotel.data.hotel)
+        }
+        navigate('/hotelPage')
+    }
+
     return (
         <div className='home_image_container'>
             {indexHotel.searchHotel.length ? <Navigate to='/search'/> : null}
@@ -43,15 +54,17 @@ const HotelsOnHomePage = observer(() => {
             {indexHotel.homeHotel.length ?
                 <div className='home_images_container'>
                     {indexHotel.homeHotel.map(hotel =>
-                        <div key={hotel.id}>
+                        <div key={hotel.id} onClick={() => goToHotelPage(hotel.id)} style={{cursor:'pointer'}}>
                            <Image
                            cloudName = "dz3dswxup"
                            publicId = 'v1650200281/test_dngcip.jpg'/>
                             <div className='hotel_image_title'>
-                                {hotel.name}
+                               Отель: {hotel.name}
                             </div>
                         </div>)}
-                </div> : <div>Loading</div>}
+                </div> :         <div className="spinner-container">
+                    <CircularProgress color='blue' style={{height:'200px', width:'200px', marginTop:'50px'}}/>
+                </div>}
         </div>
     )
 });

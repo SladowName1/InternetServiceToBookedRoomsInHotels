@@ -3,6 +3,7 @@ import axios from "axios";
 import EndPoint from "../const/EndPoint";
 import {observer} from "mobx-react-lite";
 import {Context} from "../../index";
+import {toast, Toaster} from "react-hot-toast";
 
 const BookingSearch = observer(() => {
     const [cities, setCities] = useState(null);
@@ -59,7 +60,7 @@ const BookingSearch = observer(() => {
             const hotels = await axios.get(`${EndPoint}api/hotel/searchHotels?City=${Cities}&${stringIds}`);
             indexHotel.setSearchHotel(hotels.data.hotels);
         } else {
-            alert('Пожалуйста заполните все поля')
+            toast.error("Заполните все поля")
         }
     }
         return(
@@ -96,6 +97,10 @@ const BookingSearch = observer(() => {
                         </div>
                     </div>
                 </div>
+                <Toaster
+                    position="top-center"
+                    reverseOrder={false}
+                />
             </div>
 
         )

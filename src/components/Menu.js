@@ -6,6 +6,7 @@ import {setGlobalHotels} from "./allData";
 import {useNavigate} from "react-router";
 import {Link, NavLink} from "react-router-dom";
 import {Context} from "../index";
+import {ToastContainer} from "react-toastify";
 
 const Menu = () => {
   const [active, setActive] = useState(false);
@@ -41,17 +42,21 @@ const Menu = () => {
   }
 
   const goToManagerHotelPage = () => {
-      navigate('/mmanagerHotel');
+      navigate('/managerHotel');
   }
 
   const goToUserPage =() => {
       navigate('/userTable');
   }
 
+  const goToProfilePage = () => {
+      navigate('/profile')
+  }
+
   return (
     <div className="nav-menu">
-      <div style={{cursor:'pointer'}} onClick={() => toHomePage()}>
-          Hotel App
+      <div style={{cursor:'pointer', margin:'5px 10px 0 10px'}} onClick={() => toHomePage()}>
+          Главная
       </div>
       <div className="nav-menu-items">
           {user.User?.role ?
@@ -68,12 +73,12 @@ const Menu = () => {
                           <div className="nav-menu-item" onClick={() => goToUserPage()}>Пользователи</div>:null}
 
 
-                  <div className="nav-menu-item"><a href='/profile'>Профиль</a></div>
+                  <div className="nav-menu-item" onClick={() => goToProfilePage()}>Профиль</div>
                   <div className="nav-menu-item" onClick={() => logout()}>Выйти
                   </div>
               </div>
               :
-              <div className="nav-menu-item" onClick={() => setActive(true)}>Войти</div>}
+              <div className="nav-menu-item" onClick={() => setActive(true)}>Авторизация</div>}
       </div>
       <ModalLogin active={active} setActive={setActive} />
     </div>

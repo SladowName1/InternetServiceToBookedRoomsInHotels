@@ -3,7 +3,7 @@
     justify-content: space-between;
     height: 35px;
     font-size: 20px;
-    background-color: orange;
+    background-color: #008cff;
 }
 
 .nav-menu-items {
@@ -11,6 +11,6 @@
 }
 
 .nav-menu-item {
-    margin-left: 5px;
+    margin: 5px 10px 0 10px;
     cursor: pointer;
 }

@@ -4,6 +4,7 @@ import {Context} from "../../index";
 import axios from "axios";
 import EndPoint from "../const/EndPoint";
 import Image from '../../img/img.png';
+import Dropzone from "react-dropzone";
 
 const ProfilePage = observer(() => {
     const {user, view} = useContext(Context);
@@ -19,6 +20,28 @@ const ProfilePage = observer(() => {
             }
         }
     })
+    const addMyVideo = (acceptedFiles) => {
+        delete axios.defaults.headers.common["Authorization"];
+        const formData = new FormData();
+        formData.append("file", acceptedFiles[0]);
+        formData.append("upload_preset", "");
+
+        axios
+            .post("https://api.cloudinary.com/v1_1/dz3dswxup/image/upload", formData)
+            .then((res) => {
+                console.log(res.data);
+                axios.defaults.headers.common[
+                    "Authorization"
+                    ] = `Bearer ${localStorage.getItem("token")}`;
+                axios
+                    .post(
+                        `${EndPoint}api/user/updateUserInfo?id=${user.User.id}`, {Photo: res.data.public_id}
+                    )
+                    .then((res) => {
+                        alert(res.data.res);
+                    });
+            });
+    };
 return(
     <div className='profile_page_container'>
         <div>
@@ -28,8 +51,16 @@ return(
                     <button>Изменить</button>  <button>Удалить</button>
                 </div> :
                 <div>
-                    <img src={Image.toString()}/> <br/>
-                    <button>Добавить</button>
+                    <Dropzone onDrop={addMyVideo}>
+                        {({ getRootProps, getInputProps, isDragActive }) => (
+                            <div {...getRootProps()} className="dropzone">
+                                <input {...getInputProps()} />
+                                {isDragActive
+                                    ? "Drop it like it's hot!"
+                                    : "Add photo u want click or drop"}
+                            </div>
+                        )}
+                    </Dropzone>
                 </div>
                 }
         </div>

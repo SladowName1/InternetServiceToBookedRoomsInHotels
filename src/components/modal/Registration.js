@@ -2,6 +2,7 @@ import React, {useContext, useState} from "react";
 import axios from "axios";
 import EndPoint from "../const/EndPoint";
 import {Context} from "../../index";
+import {toast} from "react-hot-toast";
 
 const Registration = ({ active, setActive }) => {
     const [login, setLogin] = useState('');
@@ -40,13 +41,13 @@ const Registration = ({ active, setActive }) => {
                 }
             } catch (err) {
                 if (err.response) {
-                    setError(err.response.data.message);
+                    toast.error(err.response.data.message)
                 }
             }
         }
         else
             {
-                setError('Пароли не совпадают')
+                toast.error('Пароли не совпадают')
             }
         }
 
@@ -60,19 +61,18 @@ const Registration = ({ active, setActive }) => {
 
         return (
             <div>
-                {error ? <div>{error}</div> : null}
                 <div className="login-input-container login-email-container">
-                    <input className="login-input" placeholder="Почта" value={login} onChange={(e) => {
+                    <input className="login-input" placeholder="Email" value={login} onChange={(e) => {
                         setLogin(e.target.value)
                     }}/>
                 </div>
                 <div className="login-input-container">
-                    <input className="login-input" placeholder="Пароль" value={password} onChange={(e) => {
+                    <input type="password" className="login-input" placeholder="Пароль" value={password} onChange={(e) => {
                         setPassword(e.target.value)
                     }}/>
                 </div>
                 <div className="login-input-container">
-                    <input className="login-input" placeholder="Повтор пароля" value={repeatPassword} onChange={(e) => {
+                    <input type="password" className="login-input" placeholder="Повтор пароля" value={repeatPassword} onChange={(e) => {
                         setRepeatPassword(e.target.value)
                     }}/>
                 </div>

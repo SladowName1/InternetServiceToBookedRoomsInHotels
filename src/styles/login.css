@@ -27,6 +27,12 @@
     height: 30px;
     border-radius: 10px;
     margin: 10px 5px 10px 0;
+    background: #0770dd;
+    border: none;
+}
+
+.login-button-container button:hover {
+    background-color: #0258ac;
 }
 
 .login-button-container button:hover {

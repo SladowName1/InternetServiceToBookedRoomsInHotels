@@ -7,12 +7,12 @@
 
 .booking_search_container {
     width: 50%;
-    background-color: orange;
+    background-color: #008cff;
     height: 80px;
     margin: auto;
     text-align: center;
     font-size: 24px;
-    color: #ee5050;
+    color: black;
     border-radius: 10px;
     border-radius: 10px;
 }
@@ -22,7 +22,7 @@
 }
 .booking_search_container_element{
     display: flex;
-    background-color: orange;
+    background-color: #008cff;
     margin: 10px 20px 0 20px;
 }
 
@@ -30,13 +30,14 @@
     width:100%;
     height: 100%;
     display: flex;
-    align-items: center
+    align-items: center;
+    margin: 0 10px 0 10px;
 }
 
 .booking_search_input input{
     display: block;
     border-radius: 5px;
-    border:1px solid black;
+    border:1px solid blue;
 }
 
 .booking_search_input button{
@@ -54,6 +55,13 @@
     margin: 0 0 0 10px;
     height: 25px;
 }
+#start_date_input {
+    height: 27px;
+}
+
+#end_date_input {
+    height: 27px;
+}
 
 .input_element_to {
     margin: 0 10px 0 0;
@@ -68,15 +76,17 @@
 
 .button_search_hotels{
     width: 100%;
-    height: 27px;
+    height: 29px;
     margin: 0 10px 0 10px;
     border-radius: 5px;
-    border:1px solid black;
+    border: none;
+    background: #0770dd;
     cursor: pointer;
+    font-size: 16px;
 }
 
 .button_search_hotels:hover{
-    background-color: orange;
+    background-color: #0258ac;
 }
 
 .select_city_search {
