@@ -27,7 +27,7 @@ const Menu = () => {
   }
 
   const logout = () => {
-      localStorage.removeItem('token');
+      localStorage.removeItem('token')
       setIsUser(false);
       user.setUser(null);
   }
