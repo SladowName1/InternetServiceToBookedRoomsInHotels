@@ -52,11 +52,11 @@ const Login = ({ active, setActive }) => {
         <input className="login-input" placeholder="Email" value={login} onChange={(e) => {setLogin(e.target.value)}}/>
       </div>
       <div className="login-input-container">
-        <input className="login-input" placeholder="Password" value={password} onChange={(e) => {setPassword(e.target.value)}}/>
+        <input type="password" className="login-input" placeholder="Пароль" value={password} onChange={(e) => {setPassword(e.target.value)}}/>
       </div>
       <div className="login-button-container">
-          <button onClick={() => submitLogin()}>Login</button>
-          <button onClick={() => cancel()}>Cancel</button>
+          <button onClick={() => submitLogin()}>Авторизация</button>
+          <button onClick={() => cancel()}>Отмена</button>
       </div>
     </div>
   );

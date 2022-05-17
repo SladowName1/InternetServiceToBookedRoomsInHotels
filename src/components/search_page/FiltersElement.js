@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-const FiltersElement = ({test, setTest}) => {
+const FiltersElement = () => {
     const [isShowPrice, setIsShowPrice] = useState(false);
     const [isShowNumberOfPrice, setIsShowNumberOfPrice] = useState(false);
     const [isShowCustomerRaiting, setIsShowCustomerRaiting] = useState(false);
@@ -12,10 +12,10 @@ const FiltersElement = ({test, setTest}) => {
     return(
         <div className='filter_container'>
             <div className='filter_element'>
-                <input/>
+                <input placeholder='Поиск' style={{borderRadius:'5px', border:'1px solid blue', height:'27px'}}/>
             </div>
             <div className='filter_element'>
-                <div className='filter_element_title' style={{cursor:"pointer"}} onClick={() => {setIsShowPrice(!isShowPrice); setTest(true)}}>
+                <div className='filter_element_title' style={{cursor:"pointer"}} onClick={() => {setIsShowPrice(!isShowPrice)}}>
                     Стоймость
                 </div>
                 <div style={isShowPrice ? {display:"block"}: {display:"none"}}>
@@ -24,7 +24,7 @@ const FiltersElement = ({test, setTest}) => {
                 </div>
             </div>
             <div className='filter_element'>
-                <div className='filter_element_title' style={{cursor:"pointer"}} onClick={() => {setIsShowPopularFilter(!isShowPopularFilter); setTest(true)}}>
+                <div className='filter_element_title' style={{cursor:"pointer"}} onClick={() => {setIsShowPopularFilter(!isShowPopularFilter)}}>
                     Популярные фильтры
                 </div>
                 <div style={isShowPopularFilter ? {display:"block"}: {display:"none"}}>
@@ -53,7 +53,7 @@ const FiltersElement = ({test, setTest}) => {
                 </div>
             </div>
             <div className='filter_element'>
-                <div className='filter_element_title' style={{cursor:"pointer"}} onClick={() => {setIsShowNumberOfPrice(!isShowNumberOfPrice); setTest(true)}}>
+                <div className='filter_element_title' style={{cursor:"pointer"}} onClick={() => {setIsShowNumberOfPrice(!isShowNumberOfPrice)}}>
                     Количество звезд
                 </div>
                 <div style={isShowNumberOfPrice ? {display:"block"}: {display:"none"}}>
@@ -82,7 +82,7 @@ const FiltersElement = ({test, setTest}) => {
                 </div>
             </div>
             <div className='filter_element'>
-                <div className='filter_element_title' style={{cursor:"pointer"}} onClick={() => {setIsShowCustomerRaiting(!isShowCustomerRaiting); setTest(true)}}>
+                <div className='filter_element_title' style={{cursor:"pointer"}} onClick={() => {setIsShowCustomerRaiting(!isShowCustomerRaiting)}}>
                     Оценка посетителей
                 </div>
                 <div style={isShowCustomerRaiting ? {display:"block"}: {display:"none"}}>

@@ -5,8 +5,9 @@
 
 .sorted_container {
     width: 100%;
-    background-color: orange;
+    background-color: #008cff;
     height: 70px;
+    border-radius: 7px;
 }
 
 .sorted_container_title {
@@ -17,7 +18,7 @@
 
 .sorted_container_by {
     display: flex;
-    margin-top: 5px;
+    margin-bottom: 10px;
     font-size: 18px;
     width: 50%;
     white-space: nowrap;
@@ -29,13 +30,13 @@
 
 .sorted_container_element{
     display: flex;
-    margin-left: 10px;
+    margin: 0 0 15px 10px;
     height: 100%;
-    border: 1px solid black;
     padding: 4px;
     border-radius: 3px;
     cursor: pointer;
     white-space: nowrap;
+    background: #0040ef;
 }
 
 .list_element {

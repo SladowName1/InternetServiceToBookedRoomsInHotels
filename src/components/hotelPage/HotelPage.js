@@ -13,13 +13,22 @@ const HotelPage = observer(() => {
     const {indexHotel, rooms, dateBooked} = useContext(Context);
 
     useEffect (async () => {
-        if (!hotel) {
+        // if (!hotel) {
+        //     setHotel(indexHotel.needHotel);
+        //     const  hotelRoom = await axios.get(`${EndPoint}api/room/hotel?hotelId=${indexHotel.needHotel.id}`)
+        //     const a = await axios.get('https://nominatim.openstreetmap.org/search?q=Минск Сухаревская 12&limit=1&format=json');
+        //     setAddress({lat: parseFloat(a.data[0].lat), lng: parseFloat(a.data[0].lon)});
+        //     const address = await axios.get(`https://nominatim.openstreetmap.org/search?q=${indexHotel.needHotel.country} ${indexHotel.needHotel.city} ${indexHotel.needHotel.street}&limit=1&format=json`);
+        //     indexHotel.setNeedHotel({});
+        //     rooms.setRooms(hotelRoom.data);
+        // }
+        if(indexHotel.hotelFromHomePage) {
             setHotel(indexHotel.needHotel);
             const  hotelRoom = await axios.get(`${EndPoint}api/room/hotel?hotelId=${indexHotel.needHotel.id}`)
             const a = await axios.get('https://nominatim.openstreetmap.org/search?q=Минск Сухаревская 12&limit=1&format=json');
             setAddress({lat: parseFloat(a.data[0].lat), lng: parseFloat(a.data[0].lon)});
             const address = await axios.get(`https://nominatim.openstreetmap.org/search?q=${indexHotel.needHotel.country} ${indexHotel.needHotel.city} ${indexHotel.needHotel.street}&limit=1&format=json`);
-            indexHotel.setNeedHotel({});
+            indexHotel.setHotelFromHomePage({});
             rooms.setRooms(hotelRoom.data);
         }
     })

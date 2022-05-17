@@ -1,10 +1,10 @@
 import React, {useContext, useEffect} from "react";
-import Image from "../../img/img.png";
 import {Context} from "../../index";
 import {observer} from "mobx-react-lite";
 import axios from "axios";
 import EndPoint from "../const/EndPoint";
 import {Navigate} from "react-router";
+import {Image} from "cloudinary-react";
 
 const ListElement = observer(() => {
     const {indexHotel} = useContext(Context);
@@ -26,7 +26,6 @@ const ListElement = observer(() => {
                 </div>
                 <div className='sorted_container_by'>
                     <div className='sorted_container_by_title'>Сортировать по</div>
-                    <div className='sorted_container_element'>Количеству дополнений</div>
                     <div className='sorted_container_element'>Количеству звезд</div>
                     <div className='sorted_container_element'>Оценке гостей</div>
                     <div className='sorted_container_element'>Цене</div>
@@ -38,7 +37,11 @@ const ListElement = observer(() => {
                         {indexHotel.searchHotel.map(hotel =>
                             <div className='list_element' key={hotel.id}>
                                 <div className='list_element_image_container'>
-                                    <img className='list_element_image' src={Image} alt="Loading" height='200px' width='270px'/>
+                                    <Image
+                                        cloudName = "dz3dswxup"
+                                        publicId = 'v1650200281/test_dngcip.jpg'
+                                        width='270px'
+                                        height='270px'/>
                                 </div>
                                 <div className='list_element_all_information'>
                                     <div className='list_element_information'>
