@@ -11,6 +11,6 @@
 }
 
 .nav-menu-item {
-    margin-left: 5px;
+    margin: 5px 10px 0 10px;
     cursor: pointer;
 }

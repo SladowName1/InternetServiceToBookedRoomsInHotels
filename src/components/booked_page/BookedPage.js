@@ -16,18 +16,19 @@ const BookedPage = observer(() => {
             setRooms(roomsByUserId.data.rooms);
         }
     })
+
     return(
         <div>
             {rooms?.length ?
-            <table>
-                <tr>
+            <table width='100%' style={{borderCollapse:'separate',borderSpacing:' 0 1em'}}>
+                <tr width='100%'>
                     <th>Номер</th>
                     <th>Дата заселения</th>
                     <th>Дата выселения</th>
                     <th>Цена</th>
                 </tr>
                 {rooms.map(room => (
-                    <tr key={room.id}>
+                    <tr key={room.id} width='100%' style={{ textAlign: 'center'}}>
                         <td>{room.bookeNumber}</td>
                         <td>{room.start}</td>
                         <td>{room.end}</td>

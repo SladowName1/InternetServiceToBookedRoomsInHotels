@@ -10,18 +10,18 @@ const HotelPageForManager = observer(() => {
 
     return (
         <div>
-            <table>
+            <table width='100%' style={{borderCollapse:'separate',borderSpacing:' 0 1em'}}>
                 <tr>
                     <th>Имя</th>
                     <th>Количество звезд</th>
                     <th>Страна</th>
                     <th>Действия</th>
                 </tr>
-                <tr>
-                    <td>ЙЦУ</td>
-                    <td>2</td>
-                    <td>фв</td>
-                    <td>действия</td>
+                <tr width='100%' style={{ textAlign: 'center'}}>
+                    <td>Test</td>
+                    <td>3</td>
+                    <td>Belarus</td>
+                    <td>action</td>
                 </tr>
             </table>
         </div>

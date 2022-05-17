@@ -41,16 +41,20 @@ const Menu = () => {
   }
 
   const goToManagerHotelPage = () => {
-      navigate('/mmanagerHotel');
+      navigate('/managerHotel');
   }
 
   const goToUserPage =() => {
       navigate('/userTable');
   }
 
+  const goToProfilePage = () => {
+      navigate('/profile')
+  }
+
   return (
     <div className="nav-menu">
-      <div style={{cursor:'pointer'}} onClick={() => toHomePage()}>
+      <div style={{cursor:'pointer', margin:'5px 10px 0 10px'}} onClick={() => toHomePage()}>
           Hotel App
       </div>
       <div className="nav-menu-items">
@@ -68,7 +72,7 @@ const Menu = () => {
                           <div className="nav-menu-item" onClick={() => goToUserPage()}>Пользователи</div>:null}
 
 
-                  <div className="nav-menu-item"><a href='/profile'>Профиль</a></div>
+                  <div className="nav-menu-item" onClick={() => goToProfilePage()}>Профиль</div>
                   <div className="nav-menu-item" onClick={() => logout()}>Выйти
                   </div>
               </div>

@@ -11,6 +11,8 @@
 
 .profile_page_info_element_container {
     display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
 }
 
 .profile_page_element_title {
@@ -19,4 +21,31 @@
 
 .profile_page_element_value {
     display: flex;
+}
+
+.profile_page_info_container input{
+    border-radius: 5px;
+    border: 1px grey solid;
+    margin: 0 5px 0 0;
+}
+
+
+.dropzone{
+    height: 8rem;
+    margin: 1rem;
+    padding: 1rem;
+    border: 2px dashed salmon;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:  2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.profile_page_info_container button{
+    border-radius: 5px;
+    border: 1px grey solid;
+    margin: 0 5px 0 0;
+    cursor: pointer;
+    background: #5151e7;
 }
