@@ -10,6 +10,10 @@
     border-radius: 7px;
 }
 
+.sorted_container div{
+    margin-left: 5px;
+}
+
 .sorted_container_title {
     font-size: 20px;
     font-weight: bold;
@@ -36,7 +40,11 @@
     border-radius: 3px;
     cursor: pointer;
     white-space: nowrap;
-    background: #0040ef;
+    background: #0770dd;
+}
+
+.sorted_container_element:hover{
+    background: #0258ac;;
 }
 
 .list_element {

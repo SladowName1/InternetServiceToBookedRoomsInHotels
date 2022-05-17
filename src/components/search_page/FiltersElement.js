@@ -16,7 +16,7 @@ const FiltersElement = () => {
             </div>
             <div className='filter_element'>
                 <div className='filter_element_title' style={{cursor:"pointer"}} onClick={() => {setIsShowPrice(!isShowPrice)}}>
-                    Стоймость
+                    Стоймость {isShowPrice ? <span>&or;</span> : <span>&and;</span>}
                 </div>
                 <div style={isShowPrice ? {display:"block"}: {display:"none"}}>
                     <div>{priceRoom}</div>
@@ -25,7 +25,7 @@ const FiltersElement = () => {
             </div>
             <div className='filter_element'>
                 <div className='filter_element_title' style={{cursor:"pointer"}} onClick={() => {setIsShowPopularFilter(!isShowPopularFilter)}}>
-                    Популярные фильтры
+                    Популярные фильтры {isShowPopularFilter ? <span>&or;</span> : <span>&and;</span>}
                 </div>
                 <div style={isShowPopularFilter ? {display:"block"}: {display:"none"}}>
                     <ul>
@@ -54,7 +54,7 @@ const FiltersElement = () => {
             </div>
             <div className='filter_element'>
                 <div className='filter_element_title' style={{cursor:"pointer"}} onClick={() => {setIsShowNumberOfPrice(!isShowNumberOfPrice)}}>
-                    Количество звезд
+                    Количество звезд {isShowNumberOfPrice ? <span>&or;</span> : <span>&and;</span>}
                 </div>
                 <div style={isShowNumberOfPrice ? {display:"block"}: {display:"none"}}>
                     <ul>
@@ -83,7 +83,7 @@ const FiltersElement = () => {
             </div>
             <div className='filter_element'>
                 <div className='filter_element_title' style={{cursor:"pointer"}} onClick={() => {setIsShowCustomerRaiting(!isShowCustomerRaiting)}}>
-                    Оценка посетителей
+                    Оценка посетителей {isShowCustomerRaiting ? <span>&or;</span> : <span>&and;</span>}
                 </div>
                 <div style={isShowCustomerRaiting ? {display:"block"}: {display:"none"}}>
                     <div>{customerRaiting}</div>

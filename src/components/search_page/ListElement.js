@@ -63,7 +63,7 @@ const ListElement = observer(() => {
                                             Стоймость
                                         </div>
                                         <div>
-                                            <button onClick={() => watchHotelRoom(hotel.id)}>Посмотреть</button>
+                                            <button onClick={() => watchHotelRoom(hotel.id)} style={{background:'#0770dd', border:'none', height:'27px', borderRadius:'5px', fontSize:'14px', cursor:'pointer'}}>Посмотреть</button>
                                         </div>
                                     </div>
                                 </div>

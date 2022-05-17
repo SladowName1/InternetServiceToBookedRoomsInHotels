@@ -47,5 +47,9 @@
     border: 1px grey solid;
     margin: 0 5px 0 0;
     cursor: pointer;
-    background: #5151e7;
+    background: #0770dd;
+}
+
+.profile_page_info_container button:hover{
+    background: #0258ac;
 }

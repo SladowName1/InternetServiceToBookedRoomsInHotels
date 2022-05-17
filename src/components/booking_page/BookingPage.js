@@ -1,11 +1,10 @@
-import {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Context} from "../../index";
-import Image from '../../img/img.png';
 import EndPoint from "../const/EndPoint";
 import axios from "axios";
 import {observer} from "mobx-react-lite";
 import {useNavigate} from "react-router";
-import {setGlobalHotels} from "../allData";
+import {Image} from "cloudinary-react";
 
 const BookingPage = observer(() => {
     const [room, setRoom] = useState(null);
@@ -64,7 +63,11 @@ const BookingPage = observer(() => {
             <div>
                 <div className='booking_page_title'>
                     <div>
-                        <img src={Image.toString()}/>
+                        <Image
+                            cloudName = "dz3dswxup"
+                            publicId = 'v1650200281/test_dngcip.jpg'
+                            width='270px'
+                            height='270px'/>
                     </div>
                     <div>
                        Название: {room.name}<br/>

@@ -120,23 +120,23 @@ return(
                 </div>
             </div>
             <div>
-                <div>
-                    <div>
+                <div className='profile_page_info_element_container'>
+                    <div className='profile_page_element_title'>
                         Новый пароль
                     </div>
-                    <div>
+                    <div className='profile_page_element_value'>
                         <input type='text'/>
                     </div>
                 </div>
-                <div>
-                    <div>
+                <div className='profile_page_info_element_container'>
+                    <div className='profile_page_element_title'>
                         Повторите пароль
                     </div>
-                    <div>
+                    <div className='profile_page_element_value'>
                         <input type='text'/>
                     </div>
                 </div>
-                <button>Изменить</button>
+                <button style={{marginLeft: 'auto', display: 'flex',height: '27px'}}>Изменить</button>
             </div>
         </div>
     </div>
