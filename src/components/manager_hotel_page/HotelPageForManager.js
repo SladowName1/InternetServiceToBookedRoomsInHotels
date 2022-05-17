@@ -5,7 +5,7 @@ import {Context} from "../../index";
 const HotelPageForManager = observer(() => {
     const {view} = useContext(Context);
     useEffect(() => {
-        view.setIsView(false);
+        view.setIsView(false)
     })
 
     return (
