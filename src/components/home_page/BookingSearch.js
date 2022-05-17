@@ -15,11 +15,10 @@ const BookingSearch = observer(() => {
     const [Cities, SetCities] = useState(null);
     const [CountOfPeople, SetCountOfPeople] = useState(null);
 
-    const{indexHotel, view} = useContext(Context);
+    const{indexHotel, view, dateBooked} = useContext(Context);
 
     useEffect(async () => {
         const date = new Date();
-        console.log(view.isView);
         let start = date.getFullYear() + '-' + pad2(date.getMonth() + 1) + '-' + pad2(date.getDate());
         document.getElementById("start_date_input").setAttribute('min', start);
         document.getElementById("end_date_input").setAttribute('min', start);
@@ -48,6 +47,8 @@ const BookingSearch = observer(() => {
             for (let i = 0; i < ids.data.ids.length; i++) {
                 stringIds += `id[${i}]=${ids.data.ids[i]}&`;
             }
+            dateBooked.setIsStart(StartDate);
+            dateBooked.setIsEnd(EndDate);
             const roomsIds = await axios.get(`${EndPoint}api/hotel/getRooms?CountOfPeople=${CountOfPeople}&${stringIds}`);
             let set = new Set(roomsIds.data.ids);
             Set.prototype.getByIndex = function(index) { return [...this][index]; }

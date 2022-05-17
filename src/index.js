@@ -15,11 +15,11 @@ import './styles/profile-page.css';
 import './styles/add-hotel-page.css';
 import './styles/add-room-page.css';
 import AboutService from "./components/AboutService";
-import BookingSearch from "./components/home_page/BookingSearch";
 import HotelStore from "./components/store/HotelStore";
 import RoomStore from "./components/store/RoomStore";
 import UserStore from "./components/store/UserStore";
 import ViewUpContainerStore from './components/store/ViewUpContainerStore';
+import DateStore from './components/store/DateStore';
 
 export const Context = createContext(null);
 
@@ -28,11 +28,10 @@ ReactDOM.render(
         indexHotel: new HotelStore(),
         rooms: new RoomStore(),
         user: new UserStore(),
-        view: new ViewUpContainerStore()
+        view: new ViewUpContainerStore(),
+        dateBooked: new DateStore(),
     }}>
         <div className='index_container'>
-            <Menu />
-            <BookingSearch/>
             <App />
             <AboutService/>
         </div>

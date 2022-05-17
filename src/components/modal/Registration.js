@@ -18,13 +18,26 @@ const Registration = ({ active, setActive }) => {
                     Password: password
                 }
                 const res = await axios.post(`${EndPoint}api/user/registration`, data);
-                localStorage.setItem('token', res.data.access_token);
-                user.setUser(data);
-                setActive(false);
-                setError('');
-                setLogin('');
-                setPassword('');
-                setRepeatPassword('');
+                if(res.data.access_token) {
+                    localStorage.setItem('token', res.data.access_token);
+                    user.setUser(data);
+
+                    const config = {
+                        headers: { Authorization: `Bearer ${res.data.access_token}` }
+                    };
+
+                    const getUser = await axios.get(`${EndPoint}api/user/getByEmail?email=${login}`,config)
+                    console.log(getUser);
+                    user.setUser(getUser.data.user);
+                    const getUserInfo = await axios.get(`${EndPoint}api/user/userInfoByEmail?email=${data.Email}`, config);
+                    user.setUserInformation(getUserInfo.data.userInfo);
+
+                    setActive(false);
+                    setError('');
+                    setLogin('');
+                    setPassword('');
+                    setRepeatPassword('');
+                }
             } catch (err) {
                 if (err.response) {
                     setError(err.response.data.message);

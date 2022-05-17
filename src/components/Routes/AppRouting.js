@@ -12,6 +12,8 @@ import HotelUpdatePage from "../manager_hotel_page/HotelUpdatePage";
 import RoomUpdatePage from "../manager_hotel_page/RoomUpdatePage";
 import Userpage from "../UserPage/UserPage";
 import UserPage from "../UserPage/UserPage";
+import BookedPage from "../booked_page/BookedPage";
+import Menu from "../Menu";
 
 const AppRouting = () =>{
     return (
@@ -27,6 +29,8 @@ const AppRouting = () =>{
             <Route path='/hotelUpdate' element={<HotelUpdatePage/>}/>
             <Route path='/roomUpdate' element={<RoomUpdatePage/>}/>
             <Route path='/userTable' element={<UserPage/>}/>
+            <Route path='/bookedPage' element={<BookedPage/>}/>
+            <Route path='/menu' element={<Menu/>}/>
         </Routes>
     )
 }

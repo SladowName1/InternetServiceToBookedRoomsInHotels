@@ -15,8 +15,8 @@ export default class HotelStore {
     }
 
     setSearchHotel(hotels) {
-        this._city = hotels[0].city;
-        this._country = hotels[0].country;
+        this._city = hotels[0]?.city;
+        this._country = hotels[0]?.country;
         this._searchHotels = hotels;
     }
 

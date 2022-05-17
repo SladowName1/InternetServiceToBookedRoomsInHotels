@@ -10,17 +10,17 @@ import {Image} from "cloudinary-react";
 const HotelPage = observer(() => {
     const [hotel, setHotel] = useState(null);
     const [address, setAddress] = useState(null);
-    const {indexHotel, rooms} = useContext(Context);
+    const {indexHotel, rooms, dateBooked} = useContext(Context);
 
     useEffect (async () => {
         if (!hotel) {
             setHotel(indexHotel.needHotel);
-            const responseRoom = await axios.get(`${EndPoint}api/room/hotel?hotelId=${indexHotel.needHotel.id}`)
+            const  hotelRoom = await axios.get(`${EndPoint}api/room/hotel?hotelId=${indexHotel.needHotel.id}`)
             const a = await axios.get('https://nominatim.openstreetmap.org/search?q=Минск Сухаревская 12&limit=1&format=json');
             setAddress({lat: parseFloat(a.data[0].lat), lng: parseFloat(a.data[0].lon)});
             const address = await axios.get(`https://nominatim.openstreetmap.org/search?q=${indexHotel.needHotel.country} ${indexHotel.needHotel.city} ${indexHotel.needHotel.street}&limit=1&format=json`);
             indexHotel.setNeedHotel({});
-            rooms.setRooms(responseRoom.data);
+            rooms.setRooms(hotelRoom.data);
         }
     })
 

@@ -4,3 +4,26 @@
     width: 80%;
     margin: 40px auto auto auto;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 60%;
+}
+
+form input[type=text]{
+    width:100%;
+    border:2px solid #aaa;
+    border-radius:7px;
+    margin:8px 0;
+    outline:none;
+    padding:8px;
+    box-sizing:border-box;
+    transition:.3s;
+}
+
+form input[type=text]:focus{
+    border-color:dodgerBlue;
+    box-shadow:0 0 8px 0 dodgerBlue;
+}

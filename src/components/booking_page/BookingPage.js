@@ -1,10 +1,20 @@
 import {useContext, useEffect, useState} from "react";
 import {Context} from "../../index";
 import Image from '../../img/img.png';
+import EndPoint from "../const/EndPoint";
+import axios from "axios";
+import {observer} from "mobx-react-lite";
+import {useNavigate} from "react-router";
+import {setGlobalHotels} from "../allData";
 
-const BookingPage = () => {
+const BookingPage = observer(() => {
     const [room, setRoom] = useState(null);
-    const {rooms} = useContext(Context);
+    const {rooms, user, dateBooked, indexHotel} = useContext(Context);
+    const [name, setName] = useState(true);
+    const [lastName, setLastName] = useState(true);
+    const [email, setEmail] = useState(true);
+    const [phone, setPhone] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(!room) {
@@ -12,29 +22,77 @@ const BookingPage = () => {
         }
     })
 
+    const submitBooking = async () => {
+        const name = document.getElementById('nameInput')?.validity.valid;
+        const lastName = document.getElementById('lastNameInput')?.validity.valid;
+        const email = document.getElementById('emailInput')?.validity.valid;
+        const phone = document.getElementById('phoneInput')?.validity.valid;
+        setName(name);
+        setLastName(lastName);
+        setEmail(email);
+        setPhone(phone);
+        if (name && lastName && (email || user.User.email) && phone) {
+            const config = {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            };
+            console.log(user.User);
+            const getUser = await axios.get(`${EndPoint}api/user/email?email=${user.User.email}`, config);
+            console.log(getUser);
+            if(getUser.data?.user?.id) {
+                const data = {
+                    RoomId: room.id,
+                    DataStartBooking: dateBooked.IsStart,
+                    DataEndBookin: dateBooked.IsEnd,
+                    UserId: getUser.data.user.id,
+                    Amount: 20,
+                }
+
+                const resBooked = await axios.post(`${EndPoint}api/bookingroom/booked`,data, config);
+                alert(resBooked.data.message);
+                indexHotel.setSearchHotel([]);
+                navigate('/')
+            }
+        } else {
+            alert('Пожалуйста заполните все поля')
+        }
+    }
+
     return(
         <div className='booking_page_container'>
-            <div className='booking_page_title'>
-                <div>
-                    <img src={Image.toString()}/>
+
+            {room ?
+            <div>
+                <div className='booking_page_title'>
+                    <div>
+                        <img src={Image.toString()}/>
+                    </div>
+                    <div>
+                       Название: {room.name}<br/>
+                        Номер: {room.roomNumber}<br/>
+                       Описание: {room.description}<br/>
+                    </div>
                 </div>
-                <div>
-                    <p>TEXT qwyueuhojiqwpokqpw[pfqwjkgjoqwgqwg
-                        qwigophqwjgkqw;lgk</p>
-                </div>
-            </div>
-            <div className='booking_page_form_container'>
-                <form className='booking_page_form'>
-                    <label>Имя</label><input type='text' required/><br/>
-                    <label>Фамилия</label><input  type='text' required/><br/>
-                    <label>Email</label><input type='text' required/><br/>
-                    <label>Номер телефона</label><input type='text' required/><br/>
-                    <input type="submit" name="submit" className="button-7" role="button"/>
-                </form>
-            </div>
-            {room ? <div>{room.id}</div> : <div>Loading</div>}
+                <div className='form_container'>
+                    <label>Имя</label>
+                    {user.UserInformation?.name ? <p>{user.UserInformation.name}</p> :
+                    <input type='text' id='nameInput' className={name ? '' : ' required_input_element'} required/>}<br/>
+
+                    <label>Фамилия</label>
+                    {user.UserInformation?.lastName ? <p>{user.UserInformation.lastName}</p> :
+                    <input type='text' id='lastNameInput' className={lastName ? '' : ' required_input_element'} required/>}<br/>
+
+                    <label>Email</label>
+                    {user.User?.email ? <p>{user.User.email}</p> :
+                    <input type='text' id='emailInput' className={email ? '' : ' required_input_element'} required/>}<br/>
+
+                    <label>Номер телефона</label>
+                    {user.UserInformation?.phone ? <p>{user.UserInformation.phone}</p> :
+                    <input type='text' id='phoneInput' className={phone ? '' : ' required_input_element'} required/>}<br/>
+
+                    <button className="button-7" onClick={() => submitBooking()}>Отправить</button>
+                </div></div> : <div>Loading</div>}
         </div>
     )
-}
+});
 
 export default BookingPage;

@@ -14,15 +14,23 @@ const Login = ({ active, setActive }) => {
   const submitLogin = async () => {
       try{
           const res = await axios.post(`${EndPoint}api/user/token?username=${login}&password=${password}`);
-          localStorage.setItem('token', res.data.access_token);
-          user.setUser( {
-              Email: login,
-              Password: password
-          })
-          setActive(false);
-          setError('');
-          setLogin('');
-          setPassword('');
+          if(res.data.access_token) {
+              localStorage.setItem('token', res.data.access_token);
+              const config = {
+                  headers: { Authorization: `Bearer ${res.data.access_token}` }
+              };
+
+              const getUser = await axios.get(`${EndPoint}api/user/email?email=${login}`,config)
+              user.setUser(getUser.data.user);
+
+              const getUserInfo = await axios.get(`${EndPoint}api/user/userInfoByEmail?email=${login}`, config);
+              user.setUserInformation(getUserInfo.data.userInfo);
+
+              setActive(false);
+              setError('');
+              setLogin('');
+              setPassword('');
+          }
       } catch (err) {
        if(err.response) {
            setError(err.response.data.message);
@@ -47,7 +55,7 @@ const Login = ({ active, setActive }) => {
         <input className="login-input" placeholder="Password" value={password} onChange={(e) => {setPassword(e.target.value)}}/>
       </div>
       <div className="login-button-container">
-          <button onClick={submitLogin}>Login</button>
+          <button onClick={() => submitLogin()}>Login</button>
           <button onClick={() => cancel()}>Cancel</button>
       </div>
     </div>
