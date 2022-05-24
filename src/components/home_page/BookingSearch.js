@@ -25,6 +25,7 @@ const BookingSearch = observer(() => {
         document.getElementById("end_date_input").setAttribute('min', start);
         if (!cities) {
             const resCities = await axios.get(`${EndPoint}api/hotel/cities`);
+            console.log(resCities.data);
             setCities(resCities.data.cities);
         }
     });

@@ -8,7 +8,12 @@ export default class HotelStore {
         this._country = '';
         this._needHotel = {};
         this._hotelFromHomePage = {};
+        this._managerHotel = [];
         makeAutoObservable(this);
+    }
+
+    setManagerHotel(hotels) {
+        this._managerHotel = hotels;
     }
 
     setHomeHotel(hotels) {
@@ -27,6 +32,10 @@ export default class HotelStore {
 
     setNeedHotel(hotel) {
         this._needHotel = hotel;
+    }
+
+    get managerHotels() {
+        return this._managerHotel;
     }
 
     get homeHotel() {

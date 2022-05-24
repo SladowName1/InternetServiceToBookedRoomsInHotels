@@ -34,9 +34,7 @@ const BookingPage = observer(() => {
             const config = {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             };
-            console.log(user.User);
             const getUser = await axios.get(`${EndPoint}api/user/email?email=${user.User.email}`, config);
-            console.log(getUser);
             if(getUser.data?.user?.id) {
                 const data = {
                     RoomId: room.id,
@@ -65,7 +63,7 @@ const BookingPage = observer(() => {
                     <div>
                         <Image
                             cloudName = "dz3dswxup"
-                            publicId = 'v1650200281/test_dngcip.jpg'
+                            publicId = {rooms.Room.photo}
                             width='270px'
                             height='270px'/>
                     </div>
@@ -76,9 +74,9 @@ const BookingPage = observer(() => {
                     </div>
                 </div>
                 <div className='form_container'>
-                    <label>Имя</label>
+                    <label style={{marginTop:'2rem'}}>Имя</label>
                     {user.UserInformation?.name ? <p>{user.UserInformation.name}</p> :
-                    <input type='text' id='nameInput' className={name ? '' : ' required_input_element'} required/>}<br/>
+                    <input  type='text' id='nameInput' className={name ? '' : ' required_input_element'} required/>}<br/>
 
                     <label>Фамилия</label>
                     {user.UserInformation?.lastName ? <p>{user.UserInformation.lastName}</p> :

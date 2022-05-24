@@ -11,6 +11,8 @@ const RoomTable = observer(({room}) => {
     const {rooms} = useContext(Context);
 
     useEffect(async () => {
+        console.log('here')
+        console.log(room);
         if(!countOfPeople.length) {
             const array = [];
             for (let i = 0; i < room.countOfPeople; i++) {
@@ -36,7 +38,7 @@ const RoomTable = observer(({room}) => {
                         <div>
                             <Image
                                 cloudName="dz3dswxup"
-                                publicId='https://res.cloudinary.com/dz3dswxup/image/upload/v1650200281/test_dngcip.jpg'
+                                publicId={room?.photo}
                                 width="300"
                                 crop="scale"
                             />
@@ -65,8 +67,8 @@ const RoomTable = observer(({room}) => {
                             <div style={{color:'green', fontSize:'28px', margin:'10px 0 0 0 '}}>{room.cost} $</div>
                         </div>
                         <div>
-                            <button style={{background:'#2568ff', margin:'100% 0 0 0', border:'none', borderRadius:'5px', width:'70px', height:'40px', cursor:'pointer'}}
-                            onClick={() => goToReservPage()}>Reserv</button>
+                            <button style={{background:'#2568ff', margin:'70% 0 0 0', border:'none', borderRadius:'5px', width:'100px', height:'40px', cursor:'pointer'}}
+                            onClick={() => goToReservPage()}>Бронировать</button>
                         </div>
                     </div>
         </div>

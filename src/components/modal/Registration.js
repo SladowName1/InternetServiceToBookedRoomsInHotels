@@ -30,8 +30,6 @@ const Registration = ({ active, setActive }) => {
                     const getUser = await axios.get(`${EndPoint}api/user/getByEmail?email=${login}`,config)
                     console.log(getUser);
                     user.setUser(getUser.data.user);
-                    const getUserInfo = await axios.get(`${EndPoint}api/user/userInfoByEmail?email=${data.Email}`, config);
-                    user.setUserInformation(getUserInfo.data.userInfo);
 
                     setActive(false);
                     setError('');

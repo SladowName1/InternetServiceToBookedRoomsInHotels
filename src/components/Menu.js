@@ -31,6 +31,7 @@ const Menu = () => {
       localStorage.removeItem('token')
       setIsUser(false);
       user.setUser(null);
+      user.setUserInformation(null);
   }
 
   const goToBookedPage = () => {

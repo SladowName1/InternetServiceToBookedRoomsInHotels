@@ -39,7 +39,7 @@ const ListElement = observer(() => {
                                 <div className='list_element_image_container'>
                                     <Image
                                         cloudName = "dz3dswxup"
-                                        publicId = 'v1650200281/test_dngcip.jpg'
+                                        publicId = {hotel.photo}
                                         width='270px'
                                         height='270px'/>
                                 </div>

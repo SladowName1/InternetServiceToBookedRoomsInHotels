@@ -57,7 +57,7 @@ const HotelsOnHomePage = observer(() => {
                         <div key={hotel.id} onClick={() => goToHotelPage(hotel.id)} style={{cursor:'pointer'}}>
                            <Image
                            cloudName = "dz3dswxup"
-                           publicId = 'v1650200281/test_dngcip.jpg'/>
+                           publicId = {hotel.photo}/>
                             <div className='hotel_image_title'>
                                Отель: {hotel.name}
                             </div>

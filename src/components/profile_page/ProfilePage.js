@@ -1,18 +1,25 @@
 import {observer} from "mobx-react-lite";
-import {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Context} from "../../index";
 import axios from "axios";
 import EndPoint from "../const/EndPoint";
-import Image from '../../img/img.png';
 import Dropzone from "react-dropzone";
+import {Image} from 'cloudinary-react';
 
 const ProfilePage = observer(() => {
     const {user, view} = useContext(Context);
+    const [name, setName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [secondPassword, setSecondPassword] = useState('');
 
     useEffect(async () => {
+        console.log('here')
         view.setIsView(false);
+        console.log(user.UserInformation?.photo)
         if (!user.UserInformation) {
-            const res = await axios.get(`${EndPoint}api/user/userInfo?email=${user.User.email}`, {
+            const res = await axios.get(`${EndPoint}api/user/userInfo?id=${user.User.id}`, {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             })
             if(res.data.userInfo) {
@@ -24,7 +31,7 @@ const ProfilePage = observer(() => {
         delete axios.defaults.headers.common["Authorization"];
         const formData = new FormData();
         formData.append("file", acceptedFiles[0]);
-        formData.append("upload_preset", "");
+        formData.append("upload_preset", "ms04yetu");
 
         axios
             .post("https://api.cloudinary.com/v1_1/dz3dswxup/image/upload", formData)
@@ -42,13 +49,68 @@ const ProfilePage = observer(() => {
                     });
             });
     };
+
+    const updateUSerInfo = () => {
+        const data = {
+            Name: name,
+            LastName: lastName
+        }
+        axios.defaults.headers.common[
+            "Authorization"
+            ] = `Bearer ${localStorage.getItem("token")}`;
+        axios
+            .post(
+                `${EndPoint}api/user/updateUserInfo?id=${user.User.id}`, data
+            )
+            .then(async (res) => {
+                const zxc = await axios.get(`${EndPoint}api/user/userInfo?id=${user.User.id}`, {
+                    headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+                })
+                if (zxc.data.userInfo) {
+                    user.setUserInformation(zxc.data.userInfo)
+                }
+            });
+    }
+
+    const changeImage = (e) => {
+        delete axios.defaults.headers.common["Authorization"];
+        const formData = new FormData();
+        formData.append("file", e.target.files[0]);
+        formData.append("upload_preset", "ms04yetu");
+
+        axios
+            .post("https://api.cloudinary.com/v1_1/dz3dswxup/image/upload", formData)
+            .then((res) => {
+                console.log(res.data);
+                axios.defaults.headers.common[
+                    "Authorization"
+                    ] = `Bearer ${localStorage.getItem("token")}`;
+                axios
+                    .post(
+                        `${EndPoint}api/user/updateUserInfo?id=${user.User.id}`, {Photo: res.data.public_id}
+                    )
+                    .then(async (res) => {
+                        const zxc = await axios.get(`${EndPoint}api/user/userInfo?id=${user.User.id}`, {
+                            headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+                        })
+                        if (zxc.data.userInfo) {
+                            user.setUserInformation(zxc.data.userInfo)
+                        }
+                    });
+            });
+    }
+
 return(
     <div className='profile_page_container'>
         <div>
-            {user.userInformation?.photo ?
+            {user.UserInformation?.photo ?
                 <div>
-                    <img src={Image.toString()}/> <br/>
-                    <button>Изменить</button>  <button>Удалить</button>
+                    <Image
+                        cloudName = "dz3dswxup"
+                        publicId = {user.UserInformation?.photo}
+                    width='300'
+                    height='300'/><br/>
+                    <input type='file' onChange={(e) => changeImage(e)}/>
                 </div> :
                 <div>
                     <Dropzone onDrop={addMyVideo}>
@@ -70,15 +132,14 @@ return(
                    Имя:
                </div>
                <div className='profile_page_element_value'>
-                   { user.userInformation?.name ?
-                       <div className='profile_page_element_value'>
-                           {user.userInformation?.name}
-                           <button>Изменить</button>
+                   { user.UserInformation?.name ?
+                       <div className='profile_page_element_value' style={{marginRight:'15rem', marginTop:'0.25rem', fontSize:'20px' }}>
+                           {user.UserInformation?.name}
                        </div>
                        :
                        <div className='profile_page_element_value'>
-                           <input type='text'/>
-                           <button>Добавить</button>
+                           <input value={name} onChange={(e) => setName(e.target.value)} type='text'/>
+                           <button onClick={updateUSerInfo}>Добавить</button>
                        </div>
                    }
                </div>
@@ -88,15 +149,14 @@ return(
                     Фамилия:
                 </div>
                 <div className='profile_page_element_value'>
-                    { user.userInformation?.lastName ?
-                        <div className='profile_page_element_value'>
-                            {user.userInformation?.lastName}
-                            <button>Изменить</button>
+                    { user.UserInformation?.lastName ?
+                        <div className='profile_page_element_value' style={{marginRight:'15rem', marginTop:'0.25rem', fontSize:'20px' }}>
+                            {user.UserInformation?.lastName}
                         </div>
                         :
                         <div className='profile_page_element_value'>
-                            <input type='text'/>
-                            <button>Добавить</button>
+                            <input value={lastName} onChange={(e) => setLastName(e.target.value)} type='text'/>
+                            <button onClick={updateUSerInfo}>Добавить</button>
                         </div>
                     }
                 </div>
@@ -106,15 +166,14 @@ return(
                     Email:
                 </div>
                 <div className='profile_page_element_value'>
-                    { user.userInformation?.email ?
-                        <div className='profile_page_element_value'>
-                            {user.userInformation?.email}
-                            <button>Изменить</button>
+                    { user.User?.email ?
+                        <div className='profile_page_element_value' style={{marginRight:'15rem', marginTop:'0.25rem', fontSize:'20px' }}>
+                            {user.User?.email}
                         </div>
                         :
                         <div className='profile_page_element_value'>
-                            <input type='text'/>
-                            <button>Добавить</button>
+                            <input value={email} onChange={(e) => setEmail(e.target.value)} type='text'/>
+                            <button onClick={updateUSerInfo}>Добавить</button>
                         </div>
                     }
                 </div>
@@ -125,7 +184,7 @@ return(
                         Новый пароль
                     </div>
                     <div className='profile_page_element_value'>
-                        <input type='text'/>
+                        <input value={password} onChange={(e) => setPassword(e.target.value)} type='text'/>
                     </div>
                 </div>
                 <div className='profile_page_info_element_container'>
@@ -133,7 +192,7 @@ return(
                         Повторите пароль
                     </div>
                     <div className='profile_page_element_value'>
-                        <input type='text'/>
+                        <input value={secondPassword} onChange={(e) => setSecondPassword(e.target.value)} type='text'/>
                     </div>
                 </div>
                 <button style={{marginLeft: 'auto', display: 'flex',height: '27px'}}>Изменить</button>

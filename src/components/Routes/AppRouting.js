@@ -8,9 +8,7 @@ import HotelPage from "../hotelPage/HotelPage";
 import AddHotelPage from "../add_hotel_page/AddHotelPage";
 import AddRoomPage from "../add_hotel_page/AddRoomPage";
 import HotelPageForManager from "../manager_hotel_page/HotelPageForManager";
-import HotelUpdatePage from "../manager_hotel_page/HotelUpdatePage";
-import RoomUpdatePage from "../manager_hotel_page/RoomUpdatePage";
-import Userpage from "../UserPage/UserPage";
+import RoomPageForManager from "../manager_hotel_page/RoomPageForManager";
 import UserPage from "../UserPage/UserPage";
 import BookedPage from "../booked_page/BookedPage";
 import Menu from "../Menu";
@@ -26,10 +24,9 @@ const AppRouting = () =>{
             <Route path='/addHotel' element={<AddHotelPage/>}/>
             <Route path='/addRoom' element={<AddRoomPage/>}/>
             <Route path='/managerHotel' element={<HotelPageForManager/>}/>
-            <Route path='/hotelUpdate' element={<HotelUpdatePage/>}/>
-            <Route path='/roomUpdate' element={<RoomUpdatePage/>}/>
             <Route path='/userTable' element={<UserPage/>}/>
             <Route path='/bookedPage' element={<BookedPage/>}/>
+            <Route path='/managerRoom' element={<RoomPageForManager/>}/>
             <Route path='/menu' element={<Menu/>}/>
         </Routes>
     )

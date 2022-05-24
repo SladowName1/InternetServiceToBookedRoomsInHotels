@@ -14,60 +14,46 @@ const HotelPageForManager = observer(() => {
     const navigate = useNavigate();
     useEffect(() => {
         view.setIsView(false)
-        if(!indexHotel.managerHotels.length) {
-            axios.get(`${EndPoint}api/hotel/getByUserId?id=${user.User.id}`)
+        if(!rooms.ManagerRooms?.length) {
+            axios.get(`${EndPoint}api/room/hotel?hotelId=${rooms.HotelId}`)
                 .then(res => {
-                    indexHotel.setManagerHotel(res.data.hotels);
+                    rooms.setManagerRooms(res.data.rooms);
                 })
         }
     })
 
-    const deleteHotel = (id) => {
+    const deleteRoom = (id) => {
         axios.defaults.headers.common[
             "Authorization"
             ] = `Bearer ${localStorage.getItem("token")}`;
-        axios.post(`${EndPoint}api/hotel/delete?id=${id}`).then(resp => {
-            axios.get(`${EndPoint}api/hotel/getByUserId?id=${user.User.id}`)
+        axios.post(`${EndPoint}api/room/delete?id=${id}`).then(resp => {
+            axios.get(`${EndPoint}api/room/hotel?hotelId=${rooms.HotelId}`)
                 .then(res => {
-                    indexHotel.setManagerHotel(res.data.hotels);
+                    rooms.setManagerRooms(res.data.rooms);
                 })
         })
 
     }
 
-    const addRoom = (id) => {
-        rooms.setHotelId(id);
-        navigate('/addRoom')
-    }
-
-    const viewRoom = (id) => {
-        rooms.setHotelId(id);
-        navigate('/managerRoom')
-    }
-
     return (
         <div>
-            {indexHotel.managerHotels.length ?
+            {rooms.ManagerRooms?.length ?
                 <table width='100%' style={{borderCollapse: 'separate', borderSpacing: ' 0 1em'}}>
 
                     <tr>
-                        <th>Имя</th>
-                        <th>Количество звезд</th>
-                        <th>Страна</th>
+                        <th>Номер</th>
+                        <th>Цена</th>
+                        <th>Тип</th>
                         <th>Действия</th>
                     </tr>
-                    {indexHotel.managerHotels.map(hotel => (
-                        <tr key={hotel.id} width='100%' style={{textAlign: 'center'}}>
-                            <td>{hotel.name}</td>
-                            <td>{hotel.countOfStar}</td>
-                            <td>{hotel.country}</td>
+                    {rooms.ManagerRooms.map(room => (
+                        <tr key={room.id} width='100%' style={{textAlign: 'center'}}>
+                            <td>{room.name}</td>
+                            <td>{room.cost}</td>
+                            <td>{room.type}</td>
                             <td>
-                                <img src={Add.toString()} width='30px' style={{marginRight:'0.5rem', cursor:'pointer'}}
-                                onClick={() => addRoom(hotel.id)}/>
                                 <img src={Delete.toString()} width='30px' style={{marginRight:'0.5rem', cursor:'pointer'}}
-                                onClick={() => deleteHotel(hotel.id)}/>
-                                <img src={View.toString()} width='30px' style={{marginRight:'0.5rem', cursor:'pointer'}}
-                                     onClick={() => viewRoom(hotel.id)}/>
+                                     onClick={() => deleteRoom(room.id)}/>
                             </td>
                         </tr>
                     ))}

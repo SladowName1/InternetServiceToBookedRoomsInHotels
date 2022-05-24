@@ -13,23 +13,14 @@ const HotelPage = observer(() => {
     const {indexHotel, rooms, dateBooked} = useContext(Context);
 
     useEffect (async () => {
-        // if (!hotel) {
-        //     setHotel(indexHotel.needHotel);
-        //     const  hotelRoom = await axios.get(`${EndPoint}api/room/hotel?hotelId=${indexHotel.needHotel.id}`)
-        //     const a = await axios.get('https://nominatim.openstreetmap.org/search?q=Минск Сухаревская 12&limit=1&format=json');
-        //     setAddress({lat: parseFloat(a.data[0].lat), lng: parseFloat(a.data[0].lon)});
-        //     const address = await axios.get(`https://nominatim.openstreetmap.org/search?q=${indexHotel.needHotel.country} ${indexHotel.needHotel.city} ${indexHotel.needHotel.street}&limit=1&format=json`);
-        //     indexHotel.setNeedHotel({});
-        //     rooms.setRooms(hotelRoom.data);
-        // }
-        if(indexHotel.hotelFromHomePage) {
+        if (!hotel) {
             setHotel(indexHotel.needHotel);
             const  hotelRoom = await axios.get(`${EndPoint}api/room/hotel?hotelId=${indexHotel.needHotel.id}`)
-            const a = await axios.get('https://nominatim.openstreetmap.org/search?q=Минск Сухаревская 12&limit=1&format=json');
-            setAddress({lat: parseFloat(a.data[0].lat), lng: parseFloat(a.data[0].lon)});
-            const address = await axios.get(`https://nominatim.openstreetmap.org/search?q=${indexHotel.needHotel.country} ${indexHotel.needHotel.city} ${indexHotel.needHotel.street}&limit=1&format=json`);
-            indexHotel.setHotelFromHomePage({});
-            rooms.setRooms(hotelRoom.data);
+           //const a = await axios.get('https://nominatim.openstreetmap.org/search?q=Минск Сухаревская 12&limit=1&format=json');
+            const address = await axios.get(`http://api.positionstack.com/v1/forward?access_key=83c626e9ffed17669baf15895c02186f&query=${indexHotel.needHotel.country} ${indexHotel.needHotel.city} ${indexHotel.needHotel.street}`);
+            setAddress({lat: parseFloat(address.data.data[0].latitude), lng: parseFloat(address.data.data[0].longitude)});
+            indexHotel.setNeedHotel({});
+            rooms.setRooms(hotelRoom.data.rooms);
         }
     })
 
@@ -45,7 +36,7 @@ const HotelPage = observer(() => {
                     <div>
                         <Image
                             cloudName = "dz3dswxup"
-                            publicId = 'v1650200281/test_dngcip.jpg'
+                            publicId = {hotel.photo}
                         width='400px'
                             height='400px'/>
                     </div>
