@@ -67,7 +67,7 @@ const RoomTable = observer(({room}) => {
                             <div style={{color:'green', fontSize:'28px', margin:'10px 0 0 0 '}}>{room.cost} $</div>
                         </div>
                         <div>
-                            <button style={{background:'#2568ff', margin:'70% 0 0 0', border:'none', borderRadius:'5px', width:'100px', height:'40px', cursor:'pointer'}}
+                            <button className='button_search_hotels' style={{margin:'70% 0 0 0', border:'none', borderRadius:'5px', width:'130px', height:'40px', cursor:'pointer'}}
                             onClick={() => goToReservPage()}>Бронировать</button>
                         </div>
                     </div>

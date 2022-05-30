@@ -5,7 +5,9 @@
 .home_image_title {
     display: flex;
     justify-content: center;
-    font-size: 28px;
+    font-size: 32px;
+    margin-top: 20px;
+    margin-bottom: 25px;
 }
 
 .home_images_container {
@@ -22,4 +24,7 @@
 .hotel_image_title {
     display: flex;
     justify-content: center;
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: 600;
 }

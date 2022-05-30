@@ -1,18 +1,26 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
+import {Context} from "../../index";
+import {observer} from "mobx-react-lite";
 
-const FiltersElement = () => {
+const FiltersElement = observer(() => {
+    const {indexHotel} = useContext(Context);
     const [isShowPrice, setIsShowPrice] = useState(false);
     const [isShowNumberOfPrice, setIsShowNumberOfPrice] = useState(false);
-    const [isShowCustomerRaiting, setIsShowCustomerRaiting] = useState(false);
     const [isShowPopularFilter, setIsShowPopularFilter] = useState(false);
     const [priceRoom, setPriceRoom] = useState(100);
-    const [customerRaiting, setCustomerRaiting] = useState(10);
 
+    const searchByName = (event) => {
+        if(!event) {
+            indexHotel.setSearchHotel(indexHotel.filterHotels);
+        } else {
+            indexHotel.setSearchHotel(indexHotel.filterHotels.filter(hotel => hotel.name.toLowerCase().includes(event.toLowerCase())));
+        }
+    }
 
     return(
         <div className='filter_container'>
             <div className='filter_element'>
-                <input placeholder='Поиск' style={{borderRadius:'5px', border:'1px solid blue', height:'27px'}}/>
+                <input onChange={(e) => searchByName(e.target.value)} placeholder='Поиск' style={{borderRadius:'5px', border:'1px solid blue', height:'27px'}}/>
             </div>
             <div className='filter_element'>
                 <div className='filter_element_title' style={{cursor:"pointer"}} onClick={() => {setIsShowPrice(!isShowPrice)}}>
@@ -81,17 +89,8 @@ const FiltersElement = () => {
                     </ul>
                 </div>
             </div>
-            <div className='filter_element'>
-                <div className='filter_element_title' style={{cursor:"pointer"}} onClick={() => {setIsShowCustomerRaiting(!isShowCustomerRaiting)}}>
-                    Оценка посетителей {isShowCustomerRaiting ? <span>&or;</span> : <span>&and;</span>}
-                </div>
-                <div style={isShowCustomerRaiting ? {display:"block"}: {display:"none"}}>
-                    <div>{customerRaiting}</div>
-                    <input type='range' min='0' max='10' defaultValue='10' step='1' onInput={(e) => {setCustomerRaiting(e.target.value)}}/>
-                </div>
-            </div>
         </div>
     )
-}
+});
 
 export default FiltersElement;

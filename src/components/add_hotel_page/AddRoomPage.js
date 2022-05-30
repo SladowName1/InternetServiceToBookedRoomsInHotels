@@ -83,7 +83,7 @@ const AddRoomPage = observer(() => {
                         <input {...getInputProps()} />
                         {isDragActive
                             ? "Drop it like it's hot!"
-                            : "Добавьте фото отеля нажатием или перетащите"}
+                            : "Добавьте фото комнаты нажатием или перетащите"}
                     </div>
                 )}
             </Dropzone>}
@@ -115,7 +115,7 @@ const AddRoomPage = observer(() => {
                         <input type='checkbox' style={{width:'2rem'}} onChange={() => setBath(!bath)}/> <label>Есть вторая душевая?</label>
                     </div>
                 </div>
-                <button onClick={() => addRoom()} className="button-7">Добавить</button>
+                <button onClick={() => addRoom()} className="button_search_hotels" style={{width:'200px', marginLeft:'auto', height:'33px'}}>Добавить</button>
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Context} from "../../index";
 import {observer} from "mobx-react-lite";
 import axios from "axios";
@@ -8,12 +8,28 @@ import {Image} from "cloudinary-react";
 
 const ListElement = observer(() => {
     const {indexHotel} = useContext(Context);
+    const [sortStar, setSortStar] = useState(false);
 
     const watchHotelRoom = async (id) => {
         const hotel = await axios.get(`${EndPoint}api/hotel/${id}`)
         if(hotel) {
             indexHotel.setNeedHotel(hotel.data.hotel);
         }
+    }
+
+    const sortHotels = () => {
+        const hotels = indexHotel.searchHotel;
+        if(!sortStar) {
+            hotels.sort((a, b) => {
+                return b.countOfStar - a.countOfStar;
+            });
+        } else {
+            hotels.sort((a, b) => {
+                return a.countOfStar - b.countOfStar;
+            });
+        }
+        setSortStar(!sortStar);
+        indexHotel.setSearchHotel(hotels);
     }
 
     return(
@@ -26,8 +42,7 @@ const ListElement = observer(() => {
                 </div>
                 <div className='sorted_container_by'>
                     <div className='sorted_container_by_title'>Сортировать по</div>
-                    <div className='sorted_container_element'>Количеству звезд</div>
-                    <div className='sorted_container_element'>Оценке гостей</div>
+                    <div className='sorted_container_element' onClick={() => sortHotels()}>Количеству звезд</div>
                     <div className='sorted_container_element'>Цене</div>
                 </div>
             </div>
@@ -54,16 +69,13 @@ const ListElement = observer(() => {
                                         <div>
                                             количество звезд: {hotel.countOfStar}
                                         </div>
-                                        <div>
-                                            Бенифиты
-                                        </div>
                                     </div>
                                     <div className='list_element_booking'>
                                         <div style={{marginBottom: '30px'}}>
                                             Стоймость
                                         </div>
                                         <div>
-                                            <button onClick={() => watchHotelRoom(hotel.id)} style={{background:'#0770dd', border:'none', height:'27px', borderRadius:'5px', fontSize:'14px', cursor:'pointer'}}>Посмотреть</button>
+                                            <button onClick={() => watchHotelRoom(hotel.id)} style={{background:'#0a3868', color:'white', border:'none', height:'33px', borderRadius:'5px', fontSize:'14px', cursor:'pointer'}}>Посмотреть</button>
                                         </div>
                                     </div>
                                 </div>

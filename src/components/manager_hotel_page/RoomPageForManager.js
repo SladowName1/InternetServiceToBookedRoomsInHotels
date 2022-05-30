@@ -13,8 +13,10 @@ const HotelPageForManager = observer(() => {
     const {view, indexHotel, user, rooms} = useContext(Context);
     const navigate = useNavigate();
     useEffect(() => {
+        console.log(rooms.HotelId);
+        console.log(rooms.ManagerRooms[0]?.hotelId);
         view.setIsView(false)
-        if(!rooms.ManagerRooms?.length) {
+        if(!rooms.ManagerRooms?.length || rooms.ManagerRooms[0]?.hotelId !== rooms.HotelId) {
             axios.get(`${EndPoint}api/room/hotel?hotelId=${rooms.HotelId}`)
                 .then(res => {
                     rooms.setManagerRooms(res.data.rooms);

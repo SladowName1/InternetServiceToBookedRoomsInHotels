@@ -8,7 +8,7 @@
 .booking_search_container {
     width: 50%;
     background-color: #008cff;
-    height: 80px;
+    height: 100px;
     margin: auto;
     text-align: center;
     font-size: 24px;
@@ -24,6 +24,10 @@
     display: flex;
     background-color: #008cff;
     margin: 10px 20px 0 20px;
+}
+
+.booking_search_container_element input{
+    padding: 3px 0 3px 10px;
 }
 
 .booking_search_input{
@@ -43,6 +47,8 @@
 .booking_search_input button{
     display: block;
     margin:auto;
+    padding: 3px;
+    height: 33px;
 }
 
 .input_element_where{
@@ -80,9 +86,10 @@
     margin: 0 10px 0 10px;
     border-radius: 5px;
     border: none;
-    background: #0770dd;
+    background: #0a3868;
     cursor: pointer;
     font-size: 16px;
+    color: white;
 }
 
 .button_search_hotels:hover{

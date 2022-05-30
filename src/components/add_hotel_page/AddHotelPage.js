@@ -95,7 +95,7 @@ const AddHotelPage = observer(() => {
                 <label style={{marginLeft:'2rem', fontSize:'18px'}}>Улица</label><input value={street} onChange={(e) => setStreet(e.target.value)}  type='text' required/><br/>
                 <label style={{marginLeft:'2rem', fontSize:'18px'}}>Количество звезд</label><input value={numberOfStar} onChange={(e) => setStar(e.target.value)} type='number' required/><br/>
                 <label style={{marginLeft:'2rem', fontSize:'18px'}}>Описание</label><input value={description} onChange={(e) => setDescription(e.target.value)} type='text' required/><br/>
-                <button type="submit" name="submit" className="button-7" role="button" onClick={() => submitHandle()}>Добавить</button>
+                <button type="submit" name="submit" className="button_search_hotels" style={{width:'200px', marginLeft:'auto', height:'33px'}} role="button" onClick={() => submitHandle()}>Добавить</button>
             </div>
         </div>
     )

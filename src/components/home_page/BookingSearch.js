@@ -46,20 +46,23 @@ const BookingSearch = observer(() => {
         if (count && city && start && end) {
             const ids = await axios.get(`${EndPoint}api/hotel/getReservation?StartBooking=${StartDate}&EndBooking=${EndDate}`);
             let stringIds = '';
+            console.log(ids.data.ids)
             for (let i = 0; i < ids.data.ids.length; i++) {
-                stringIds += `id[${i}]=${ids.data.ids[i]}&`;
+                stringIds += `${ids.data.ids[i]},`;
             }
             dateBooked.setIsStart(StartDate);
             dateBooked.setIsEnd(EndDate);
-            const roomsIds = await axios.get(`${EndPoint}api/hotel/getRooms?CountOfPeople=${CountOfPeople}&${stringIds}`);
+            const roomsIds = await axios.get(`${EndPoint}api/hotel/getRooms?CountOfPeople=${CountOfPeople}&ids=${stringIds}`);
+            console.log(roomsIds.data.ids)
             let set = new Set(roomsIds.data.ids);
             Set.prototype.getByIndex = function(index) { return [...this][index]; }
             stringIds = '';
             for (let i = 0; i < set.size; i++) {
-                stringIds += `ids[${i}]=${set.getByIndex(i)}&`;
+                stringIds += `${set.getByIndex(i)},`;
             }
-            const hotels = await axios.get(`${EndPoint}api/hotel/searchHotels?City=${Cities}&${stringIds}`);
+            const hotels = await axios.get(`${EndPoint}api/hotel/searchHotels?City=${Cities}&ids=${stringIds}`);
             indexHotel.setSearchHotel(hotels.data.hotels);
+            indexHotel.setFilterHotels(hotels.data.hotels);
         } else {
             toast.error("Заполните все поля")
         }
@@ -67,7 +70,7 @@ const BookingSearch = observer(() => {
         return(
             <div className={view.isView ? 'booking_search_container_all' : 'booking_search_container_not_view'}>
                 <div className='booking_search_container' >
-                    <div>
+                    <div style={{marginTop:'10px'}}>
                         Куда вы хотите поехать?
                     </div>
                     <div className='booking_search_container_element'>
