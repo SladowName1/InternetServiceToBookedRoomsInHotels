@@ -56,7 +56,7 @@ const Menu = () => {
 
   return (
     <div className="nav-menu">
-      <div style={{cursor:'pointer', margin:'5px 10px 0 10px'}} onClick={() => toHomePage()}>
+      <div className="nav-menu-item" onClick={() => toHomePage()}>
           Главная
       </div>
       <div className="nav-menu-items">

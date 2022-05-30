@@ -26,11 +26,12 @@ const BookingPage = observer(() => {
         const lastName = document.getElementById('lastNameInput')?.validity.valid;
         const email = document.getElementById('emailInput')?.validity.valid;
         const phone = document.getElementById('phoneInput')?.validity.valid;
+        console.log(user.UserInformation)
         setName(name);
         setLastName(lastName);
         setEmail(email);
         setPhone(phone);
-        if (name && lastName && (email || user.User.email) && phone) {
+        if ((name || user.UserInformation.name) && (lastName || user.UserInformation.lastName) && (email || user.User.email) && phone) {
             const config = {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             };
@@ -68,8 +69,8 @@ const BookingPage = observer(() => {
                             height='270px'/>
                     </div>
                     <div>
-                       Название: {room.name}<br/>
-                        Номер: {room.roomNumber}<br/>
+                       Название: {room.name}<br/><br/>
+                        Номер: {room.roomNumber}<br/><br/>
                        Описание: {room.description}<br/>
                     </div>
                 </div>
@@ -90,7 +91,7 @@ const BookingPage = observer(() => {
                     {user.UserInformation?.phone ? <p>{user.UserInformation.phone}</p> :
                     <input type='text' id='phoneInput' className={phone ? '' : ' required_input_element'} required/>}<br/>
 
-                    <button className="button-7" onClick={() => submitBooking()}>Отправить</button>
+                    <button className="button_search_hotels" style={{width:'200px', marginLeft:'auto', height:'33px'}} onClick={() => submitBooking()}>Отправить</button>
                 </div></div> : <div>Loading</div>}
         </div>
     )

@@ -9,7 +9,12 @@ export default class HotelStore {
         this._needHotel = {};
         this._hotelFromHomePage = {};
         this._managerHotel = [];
+        this._filterHotels = [];
         makeAutoObservable(this);
+    }
+
+    setFilterHotels(hotels) {
+        this._filterHotels = hotels;
     }
 
     setManagerHotel(hotels) {
@@ -25,6 +30,7 @@ export default class HotelStore {
     }
 
     setSearchHotel(hotels) {
+        console.log('here')
         this._city = hotels[0]?.city;
         this._country = hotels[0]?.country;
         this._searchHotels = hotels;
@@ -60,5 +66,9 @@ export default class HotelStore {
 
     get hotelFromHomePage() {
         return this._hotelFromHomePage;
+    }
+
+    get filterHotels() {
+        return this._filterHotels;
     }
 }

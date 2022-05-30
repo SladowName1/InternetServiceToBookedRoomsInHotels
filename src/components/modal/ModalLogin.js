@@ -30,11 +30,11 @@ const ModalLogin = ({ active, setActive }) => {
       >
         <div className="modal_auth_tabs">
           <div className="modal_auth_tab">
-            <div onClick={isLogin ? null : setLoginTab}>Авторизация</div>
+            <div style={isLogin ? {fontWeight:'700'} : null} onClick={isLogin ? null : setLoginTab}>Авторизация</div>
             <div className={isLogin ? "modal_auth_tab_border" : ""}></div>
           </div>
           <div className="modal_auth_tab">
-            <div onClick={isRegistration ? null : setLoginTab}>
+            <div style={isRegistration ? {fontWeight:'700'}: null} onClick={isRegistration ? null : setLoginTab}>
               Регистрация
             </div>
             <div

@@ -3,5 +3,9 @@
 }
 .room_table_item_container {
     display: flex;
-    justify-content: space-around
+    justify-content: space-around;
+    padding: 15px;
+    box-shadow: 0 0.75rem 0.75rem rgb(0 0 0 / 16%);
+    border-radius: 10px;
+    background: #008cff;
 }

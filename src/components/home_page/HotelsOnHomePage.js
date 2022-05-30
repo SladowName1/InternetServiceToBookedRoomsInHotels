@@ -40,7 +40,7 @@ const HotelsOnHomePage = observer(() => {
     const goToHotelPage = async (id) => {
         const hotel = await axios.get(`${EndPoint}api/hotel/${id}`)
         if (hotel) {
-            indexHotel.setHotelFromHomePage(hotel.data.hotel)
+            indexHotel.setNeedHotel(hotel.data.hotel)
         }
         navigate('/hotelPage')
     }

@@ -1,5 +1,6 @@
 .index_list_element_container{
     margin-left: 40px;
+    margin-bottom: 30px;
     width: 100%;
 }
 
@@ -40,7 +41,8 @@
     border-radius: 3px;
     cursor: pointer;
     white-space: nowrap;
-    background: #0770dd;
+    background: #0a3868;
+    color: white;
 }
 
 .sorted_container_element:hover{
