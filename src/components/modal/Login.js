@@ -48,6 +48,7 @@ const Login = ({ active, setActive }) => {
       }
   }
 
+
   const cancel = () => {
       setActive(false);
       setError('');

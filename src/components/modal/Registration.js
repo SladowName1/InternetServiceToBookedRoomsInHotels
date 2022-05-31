@@ -12,6 +12,7 @@ const Registration = ({ active, setActive }) => {
     const {user} = useContext(Context);
 
     const registration = async () => {
+
         const name = document.getElementById('RegemailInput')?.validity.valid;
         const pass = document.getElementById('RegpasswordInput')?.validity.valid;
         const repeatPass = document.getElementById('RegrepeatPasswordInput')?.validity.valid;
@@ -36,6 +37,8 @@ const Registration = ({ active, setActive }) => {
                             const getUser = await axios.get(`${EndPoint}api/user/getByEmail?email=${login}`, config)
                             console.log(getUser);
                             user.setUser(getUser.data.user);
+                            const getUserInfo = await axios.get(`${EndPoint}api/user/userInfo?id=${getUser.data.user.id}`, config);
+                            user.setUserInformation(getUserInfo.data.userInfo);
 
                             setActive(false);
                             setError('');
@@ -57,17 +60,16 @@ const Registration = ({ active, setActive }) => {
         } else {
             toast.error("Заполните все поля")
         }
-
         }
+    }
 
-        const logout = () => {
-            setActive(false);
-            setError('');
-            setLogin('');
-            setPassword('');
-            setRepeatPassword('');
-        }
-
+    const logout = () => {
+        setActive(false);
+        setError('');
+        setLogin('');
+        setPassword('');
+        setRepeatPassword('');
+    }
         return (
             <div>
                 <div className="login-input-container login-email-container">
@@ -90,7 +92,8 @@ const Registration = ({ active, setActive }) => {
                     <button onClick={() => logout()}>Отмена</button>
                 </div>
             </div>
-        );
-    };
+        </div>
+    );
+};
 
 export default Registration;
