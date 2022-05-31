@@ -63,10 +63,12 @@
 }
 #start_date_input {
     height: 27px;
+    width: 161px;
 }
 
 #end_date_input {
     height: 27px;
+    width: 161px;
 }
 
 .input_element_to {
