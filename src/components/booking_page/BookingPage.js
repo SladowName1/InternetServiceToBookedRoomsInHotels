@@ -5,6 +5,7 @@ import axios from "axios";
 import {observer} from "mobx-react-lite";
 import {useNavigate} from "react-router";
 import {Image} from "cloudinary-react";
+import {toast} from "react-hot-toast";
 
 const BookingPage = observer(() => {
     const [room, setRoom] = useState(null);
@@ -31,7 +32,7 @@ const BookingPage = observer(() => {
         setLastName(lastName);
         setEmail(email);
         setPhone(phone);
-        if ((name || user.UserInformation.name) && (lastName || user.UserInformation.lastName) && (email || user.User.email) && phone) {
+        if ((name || user.UserInformation?.name) && (lastName || user.UserInformation?.lastName) && (email || user.User.email) && phone) {
             const config = {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             };
@@ -46,12 +47,12 @@ const BookingPage = observer(() => {
                 }
 
                 const resBooked = await axios.post(`${EndPoint}api/bookingroom/booked`,data, config);
-                alert(resBooked.data.message);
+                toast.success(resBooked.data.message);
                 indexHotel.setSearchHotel([]);
                 navigate('/')
             }
         } else {
-            alert('Пожалуйста заполните все поля')
+            toast.error('Пожалуйста заполните все поля')
         }
     }
 

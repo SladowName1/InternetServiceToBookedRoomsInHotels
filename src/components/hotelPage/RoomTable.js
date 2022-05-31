@@ -4,6 +4,7 @@ import People from '../../img/people.png';
 import {observer} from "mobx-react-lite";
 import {Context} from "../../index";
 import {Navigate} from "react-router";
+import {toast} from "react-hot-toast";
 
 const RoomTable = observer(({room}) => {
     const [countOfPeople, setCountOfPeople] = useState([]);
@@ -28,7 +29,7 @@ const RoomTable = observer(({room}) => {
             setRoomOnPage(room);
             rooms.setRoom(room);
         } else {
-            alert('Пожалуйста зарегистрируйтесь или зайдите в наш сервис')
+            toast.error('Пожалуйста зарегистрируйтесь или зайдите в наш сервис')
         }
     }
     return(

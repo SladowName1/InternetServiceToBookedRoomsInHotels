@@ -54,6 +54,10 @@ const Menu = () => {
       navigate('/profile')
   }
 
+  const goToAdminHotelPage = () => {
+      navigate('/adminHotels')
+  }
+
   return (
     <div className="nav-menu">
       <div className="nav-menu-item" onClick={() => toHomePage()}>
@@ -71,7 +75,10 @@ const Menu = () => {
                           <div className="nav-menu-item" onClick={() => goToAddHotelPage()}>Добавить отель</div>
                           <div className="nav-menu-item" onClick={() => goToManagerHotelPage()}>Отели</div> </div>:null}
                   {user.User.role === 'admin' ?
-                          <div className="nav-menu-item" onClick={() => goToUserPage()}>Пользователи</div>:null}
+                      <div className="nav-menu-items">
+                          <div className="nav-menu-item" onClick={() => goToUserPage()}>Пользователи</div>
+                          <div className="nav-menu-item" onClick={() => goToAdminHotelPage()}>Отели</div>
+                      </div>:null}
 
 
                   <div className="nav-menu-item" onClick={() => goToProfilePage()}>Профиль</div>

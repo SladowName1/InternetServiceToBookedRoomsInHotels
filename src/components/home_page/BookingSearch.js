@@ -88,10 +88,10 @@ const BookingSearch = observer(() => {
                                 </select>}
                         </div>
                         <div className='booking_search_input'>
-                            <input id='start_date_input' type='date' value={StartDate} onChange={(e) => SetStartDate(e.target.value)} className={startDate ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='Вьезд' required/>
+                            <input id='start_date_input' onBlur={(e) => e.target.type = 'text'} type="text" onFocus={(e) => e.target.type = 'date'} value={StartDate} onChange={(e) => SetStartDate(e.target.value)} className={startDate ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='Вьезд' required/>
                         </div>
                         <div className='booking_search_input'>
-                            <input id='end_date_input' type='date' value={EndDate} onChange={(e) => SetEndDate(e.target.value)} className={endDate ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='Выезд' required/>
+                            <input id='end_date_input' onBlur={(e) => e.target.type = 'text'} type="text" onFocus={(e) => e.target.type = 'date'} value={StartDate} onChange={(e) => SetStartDate(e.target.value)} value={EndDate} onChange={(e) => SetEndDate(e.target.value)} className={endDate ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='Выезд' required/>
                         </div>
                         <div className='booking_search_input'>
                             <input id='count_of_people' type='number' value={CountOfPeople} onChange={(e) => SetCountOfPeople(e.target.value)} className={countOfPeople ? 'input_element_at' : 'input_element_at required_input_element'} placeholder='Сколько людей' required/>

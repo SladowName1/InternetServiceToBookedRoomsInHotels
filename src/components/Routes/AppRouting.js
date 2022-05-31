@@ -12,6 +12,7 @@ import RoomPageForManager from "../manager_hotel_page/RoomPageForManager";
 import UserPage from "../UserPage/UserPage";
 import BookedPage from "../booked_page/BookedPage";
 import Menu from "../Menu";
+import AdminHotelPage from "../AdminHotelPage/AdminHotelPage";
 
 const AppRouting = () =>{
     return (
@@ -28,6 +29,7 @@ const AppRouting = () =>{
             <Route path='/bookedPage' element={<BookedPage/>}/>
             <Route path='/managerRoom' element={<RoomPageForManager/>}/>
             <Route path='/menu' element={<Menu/>}/>
+            <Route path='/adminHotels' element={<AdminHotelPage/>}/>
         </Routes>
     )
 }

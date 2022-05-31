@@ -115,11 +115,11 @@ return(
                 <div>
                     <Dropzone onDrop={addMyVideo}>
                         {({ getRootProps, getInputProps, isDragActive }) => (
-                            <div {...getRootProps()} className="dropzone">
+                            <div {...getRootProps()} className="dropzone" style={{width:'400px'}}>
                                 <input {...getInputProps()} />
                                 {isDragActive
                                     ? "Drop it like it's hot!"
-                                    : "Add photo u want click or drop"}
+                                    : "Добавьте ваше фото нажатием или перетащите"}
                             </div>
                         )}
                     </Dropzone>
