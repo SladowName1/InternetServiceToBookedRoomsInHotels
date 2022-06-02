@@ -6,6 +6,7 @@ footer{
     height: 120px;
     background-color: #008cff;
     justify-content: space-between;
+    font-weight: 700;
 }
 
 .footer_content_container{

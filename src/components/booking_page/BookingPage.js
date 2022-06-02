@@ -27,7 +27,6 @@ const BookingPage = observer(() => {
         const lastName = document.getElementById('lastNameInput')?.validity.valid;
         const email = document.getElementById('emailInput')?.validity.valid;
         const phone = document.getElementById('phoneInput')?.validity.valid;
-        console.log(user.UserInformation)
         setName(name);
         setLastName(lastName);
         setEmail(email);
@@ -43,9 +42,8 @@ const BookingPage = observer(() => {
                     DataStartBooking: dateBooked.IsStart,
                     DataEndBookin: dateBooked.IsEnd,
                     UserId: getUser.data.user.id,
-                    Amount: 20,
+                    Amount: rooms.Room.cost,
                 }
-
                 const resBooked = await axios.post(`${EndPoint}api/bookingroom/booked`,data, config);
                 toast.success(resBooked.data.message);
                 indexHotel.setSearchHotel([]);

@@ -34,7 +34,7 @@ const Registration = ({ active, setActive }) => {
                                 headers: {Authorization: `Bearer ${res.data.access_token}`}
                             };
 
-                            const getUser = await axios.get(`${EndPoint}api/user/getByEmail?email=${login}`, config)
+                            const getUser = await axios.get(`${EndPoint}api/user/email?email=${login}`, config)
                             console.log(getUser);
                             user.setUser(getUser.data.user);
                             const getUserInfo = await axios.get(`${EndPoint}api/user/userInfo?id=${getUser.data.user.id}`, config);

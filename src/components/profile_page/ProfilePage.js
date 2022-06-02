@@ -44,8 +44,15 @@ const ProfilePage = observer(() => {
                     .post(
                         `${EndPoint}api/user/updateUserInfo?id=${user.User.id}`, {Photo: res.data.public_id}
                     )
-                    .then((res) => {
-                        alert(res.data.res);
+                    .then(async (res) => {
+                        if (res.data.message === "успешно обновлено") {
+                            const zxc = await axios.get(`${EndPoint}api/user/userInfo?id=${user.User.id}`, {
+                                headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+                            })
+                            if (zxc.data.userInfo) {
+                                user.setUserInformation(zxc.data.userInfo)
+                            }
+                        }
                     });
             });
     };

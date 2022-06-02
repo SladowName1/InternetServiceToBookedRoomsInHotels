@@ -57,7 +57,7 @@ const AddRoomPage = observer(() => {
             HasSecondBathroom: Number(bath),
         };
 
-
+        console.log(data);
         axios.defaults.headers.common[
             "Authorization"
             ] = `Bearer ${localStorage.getItem("token")}`;
