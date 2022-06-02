@@ -33,7 +33,7 @@ const HotelPage = observer(() => {
                     {hotel.street} {hotel.city} {hotel.country}
                 </div>
                 <div className='hotel_title_container'>
-                    <div>
+                    <div className="check">
                         <Image
                             cloudName = "dz3dswxup"
                             publicId = {hotel.photo}

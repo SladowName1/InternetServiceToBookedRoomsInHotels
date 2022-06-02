@@ -46,11 +46,11 @@ const RoomTable = observer(({room}) => {
                         </div>
                         <div>
                             <div>Описание</div>
-                            <div style={{margin:'10px 0 0 0'}}>{room.hasWifi ? <span style={{color:'green'}}>	&#10004;</span> : <span style={{color:'red'}}>&#10006;</span>}Бесплатный wifi</div>
-                            <div>{room.hasBar ? <span style={{color:'green'}}>	&#10004;</span> : <span style={{color:'red'}}>&#10006;</span>} Бар</div>
-                            <div>{room.viewOnSee ? <span style={{color:'green'}}>	&#10004;</span> : <span style={{color:'red'}}>&#10006;</span>} Вид на море</div>
-                            <div>{room.hasJacuzzi ? <span style={{color:'green'}}>	&#10004;</span> : <span style={{color:'red'}}>&#10006;</span>} Джакузи</div>
-                            <div>{room.hasSecondBathroom ? <span style={{color:'green'}}>	&#10004;</span> : <span style={{color:'red'}}>&#10006;</span>} Вторая душевая</div>
+                            <div style={{margin:'10px 0 0 0'}}>{room.hasWifi ? <span style={{marginRight:'10px'}}>	&#10004;</span> : <span style={{marginRight:'10px'}}>&#10006;</span>}Бесплатный wifi</div>
+                            <div>{room.hasBar ? <span style={{marginRight:'10px'}}>	&#10004;</span> : <span style={{marginRight:'10px'}}>&#10006;</span>} Бар</div>
+                            <div>{room.viewOnSee ? <span style={{marginRight:'10px'}}>	&#10004;</span> : <span style={{marginRight:'10px'}}>&#10006;</span>} Вид на море</div>
+                            <div>{room.hasJacuzzi ? <span style={{marginRight:'10px'}}>	&#10004;</span> : <span style={{marginRight:'10px'}}>&#10006;</span>} Джакузи</div>
+                            <div>{room.hasSecondBathroom ? <span style={{marginRight:'10px'}}>	&#10004;</span> : <span style={{marginRight:'10px'}}>&#10006;</span>} Вторая душевая</div>
                         </div>
                         <div>
                             <div>Количество людей</div>
@@ -65,7 +65,7 @@ const RoomTable = observer(({room}) => {
                         </div>
                         <div>
                             <div>Цена за ночь</div>
-                            <div style={{color:'green', fontSize:'28px', margin:'10px 0 0 0 '}}>{room.cost} $</div>
+                            <div style={{fontWeight:'600', fontSize:'28px', margin:'10px 0 0 0 '}}>{room.cost} $</div>
                         </div>
                         <div>
                             <button className='button_search_hotels' style={{margin:'70% 0 0 0', border:'none', borderRadius:'5px', width:'130px', height:'40px', cursor:'pointer'}}

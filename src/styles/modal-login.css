@@ -25,9 +25,9 @@
     background: white;
     transform: scale(0.5);
     transition: 0.4s all;
-    min-width: 30%;
-    max-width: 40rem;
-    min-height: 300px;
+    min-width: 20%;
+    max-width: 20rem;
+    min-height: 100px;
   }
   
   .modal_login_content_active {

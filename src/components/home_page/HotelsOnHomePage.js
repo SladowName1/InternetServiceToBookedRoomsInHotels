@@ -54,7 +54,7 @@ const HotelsOnHomePage = observer(() => {
             {indexHotel.homeHotel.length ?
                 <div className='home_images_container'>
                     {indexHotel.homeHotel.map(hotel =>
-                        <div key={hotel.id} onClick={() => goToHotelPage(hotel.id)} style={{cursor:'pointer'}}>
+                        <div className="home_images_container_image" key={hotel.id} onClick={() => goToHotelPage(hotel.id)} style={{cursor:'pointer'}}>
                            <Image
                            cloudName = "dz3dswxup"
                            publicId = {hotel.photo}/>

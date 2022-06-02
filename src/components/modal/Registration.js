@@ -60,7 +60,6 @@ const Registration = ({ active, setActive }) => {
         } else {
             toast.error("Заполните все поля")
         }
-        }
     }
 
     const logout = () => {
@@ -92,7 +91,6 @@ const Registration = ({ active, setActive }) => {
                     <button onClick={() => logout()}>Отмена</button>
                 </div>
             </div>
-        </div>
     );
 };
 

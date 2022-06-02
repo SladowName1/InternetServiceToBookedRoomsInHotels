@@ -16,6 +16,16 @@
     margin: 15px 0 0 0;
 }
 
+home_images_container_image {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.check {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
 .home_images_container img {
     width: 300px;
     height: 300px;
